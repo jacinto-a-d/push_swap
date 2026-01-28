@@ -1,72 +1,49 @@
 
-#include <stdio.h>
+#include "printf/ft_printf.h"
 #include "push_swap.h"
 
 
-
-
-void	check_duplicates(t_stack *stack_a)
+int		list_size_circular(t_stack *stack)
 {
-	t_stack	*current;
-	t_stack	*checker;
+	t_stack	*ptr;
+	int		i;
 
-	current = stack_a;
-	while (current != NULL)
+	i = 1;
+	ptr = stack->next;
+	if(!ptr)
+		return(0);
+	while(ptr != stack->next)
 	{
-		checker = current->next;
-		while (checker != NULL)
-		{
-			if (current->value == checker->value)
-			{
-				ft_putstr_fd("Error\n", 2);
-				exit (1);
-			}
-			checker = checker->next;
-		}
-		current = current->next;
+		i++;
+		ptr = ptr->next;
 	}
+	return(i);
 }
 
-void	format_valid(char *str)
+void	*init_stack(t_stack **stack_a,char **argv)
 {
-	int	i;
-
+	char	*tmp;
+	long	num;
+	int		i;
+	int		x;
+	int		result;
+	
 	i = 0;
-	while (str[i])
+	x = 0;
+	num = 0;
+	result = 0;
+	while(argv[i])
 	{
-		if ((str[i] < '0' || str[i] > '9') && str[i] != '-' && str[i] != '+'
-			&& str[i] != ' ')
+		tmp = ft_split(argv[i], ' ');
+		while(tmp[x])
 		{
-			ft_putstr_fd("Error\n", 2);
-			exit (1);
+			num = atoi_long(argv[i]);
+			result = check_int(num);
+			// crear nodo y anadir a la lista circular
+			free(tmp[x]);
+			x++;
 		}
 		i++;
 	}
-}
-
-void	check_num(int argc, char **argv)
-{
-	char	**str;
-
-	if (argc == 2)
-		str = ft_split(argv[1], ' ');
-	else if (argc > 2)
-		str = &argv[1];
-	else
-		return ;
-}
-
-void	init_stack(t_stack *stack_a, char *str)
-{
-	int	i;
-	long	num;
-	
-	i = 0;
-	num = 0;
-	if (str[i] != '\0')
-	{
-		format_valid(str[i]);
-	}
-	num = ft_atoi_long(str[i]);
-	check_int(num);
+	free(tmp);
 }

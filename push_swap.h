@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 15:25:07 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/01/26 16:08:23 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/01/28 16:54:37 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@ typedef struct s_stack
     struct s_stack	*prev;          // Nodo anterior (lista doble)
 }					t_stack;
 
-t_stack	*ft_push_swap(t_stack **stack_a, t_stack **stack_b);
+
+t_stack	*create_nodo(void *value);
+
+void	*check_duplicate(t_stack *stack);
+void	*check_num(char *str);
+void	*init_stack(t_stack **stack_a, char **argv);
+
+int		check_int(long num);
+int		atoi_long(const char *str);
+int		list_size_circular(t_stack *stack);
+
+char	**ft_split(char const *s, char c);
 
 #endif
