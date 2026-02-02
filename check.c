@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 13:23:22 by dipekko           #+#    #+#             */
-/*   Updated: 2026/01/28 16:54:31 by dipekko          ###   ########.fr       */
+/*   Updated: 2026/02/02 19:21:31 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// cabiar HEADERR !!!!!!
 
 #include "push_swap.h"
 #include "printf/ft_printf.h"
@@ -22,7 +20,7 @@ int	check_int(int num)
 		ft_putstr_fd("Error\n", 2);
 		exit(1);
 	}
-	return(1);
+	return (1);
 }
 
 void	*check_num(char *str)
@@ -42,32 +40,27 @@ void	*check_num(char *str)
 	}
 }
 
-void	*check_duplicate(t_stack *stack)
+void	*check_duplicate(t_stack **stack_a, int num)
 {
-	t_stack	*current;
-	t_stack	*checker;
+	t_stack		*tmp;
 
-	current = stack;
-	while (current != NULL)
+	if (!stack_a)
+		return (1);
+	tmp = stack_a;
+	while (tmp)
 	{
-		checker = current->next;
-		while (checker != NULL)
-		{
-			if (current->value == checker->value)
-			{
-				ft_printf("Error\n");
-				exit (1);
-			}
-			checker = checker->next;
-		}
-		current = current->next;
+		if (tmp->value == num)
+			return (0);
+		tmp = tmp->next;
 	}
+	return (1);
 }
 
-int	atoi_long(const char *str)
+int	atoi_long_check_int(const char *str)
 {
 	long	result;
 	long	sign;
+	int		total;
 
 	sign = 1;
 	result = 0;
@@ -84,8 +77,6 @@ int	atoi_long(const char *str)
 		result = result * 10 + (*str - '0');
 		str++;
 	}
-	return (result * sign);
+	total = cheack_int(result);
+	return (total * sign);
 }
-
-
-

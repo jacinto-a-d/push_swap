@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 14:25:17 by dipekko           #+#    #+#             */
-/*   Updated: 2026/01/28 14:26:13 by dipekko          ###   ########.fr       */
+/*   Updated: 2026/02/02 19:14:28 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// HEADERRRS MALLLLLLLL !!
-
 #include <stdio.h>
+#include <stdlib.h>
 #include "push_swap.h"
 
 static	char	*copy_substr(const char *s, char c, size_t j, char *second)

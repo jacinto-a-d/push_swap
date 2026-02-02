@@ -3,36 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 15:25:07 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/01/28 16:54:37 by dipekko          ###   ########.fr       */
+/*   Updated: 2026/02/02 19:27:52 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <stdlib.h>
+# include <unistd.h>
+
 typedef struct s_stack
 {
-    int				value;          // El número a ordenar
-    int				index;          // Posición en el ranking (0 a N)
-	int				push_cost;      // Coste de moverlo a la otra pila
-	int				above_median;   // Para saber si usamos ra o rra
-    struct s_stack	*target_node;   // Puntero al nodo donde debe ir
-    struct s_stack	*next;          // Siguiente nodo
-    struct s_stack	*prev;          // Nodo anterior (lista doble)
+	int				value;
+	int				index;
+	int				push_cost;
+	int				above_median;
+	struct s_stack	*target_node;
+	struct s_stack	*next;
+	struct s_stack	*prev;
 }					t_stack;
 
-
 t_stack	*create_nodo(void *value);
+t_stack	*add_nodo_end(t_stack **stack, t_stack *new_nodo);
+t_stack	*init_stack(t_stack **stack_a, char **argv);
 
-void	*check_duplicate(t_stack *stack);
+void	*check_duplicate(t_stack *stack, int num);
+void	error_and_clean(char **tmp, t_stack **stack, int n);
+void	free_stack(t_stack **stack);
 void	*check_num(char *str);
-void	*init_stack(t_stack **stack_a, char **argv);
 
 int		check_int(long num);
-int		atoi_long(const char *str);
+int		atoi_long_chack_int(const char *str);
 int		list_size_circular(t_stack *stack);
 
 char	**ft_split(char const *s, char c);
