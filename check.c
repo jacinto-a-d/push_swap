@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 13:23:22 by dipekko           #+#    #+#             */
-/*   Updated: 2026/02/03 02:51:33 by dipekko          ###   ########.fr       */
+/*   Updated: 2026/02/03 18:23:27 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_int(long num)
 	return ;
 }
 
-void	*check_num(char *str)
+void	check_num(char *str)
 {
 	int	i;
 
@@ -57,27 +57,6 @@ int	check_duplicate(t_stack **stack_a, int num)
 			break ;
 	}
 	return (0);
-}
-
-void	process_validation_create(t_stack **stack, char **tmp)
-{
-	int		x;
-	long	num;
-	t_stack	*new_nodo;
-
-	x = 0;
-	num = 0;
-	while (tmp[x])
-	{
-		check_number(tmp[x]);
-		num = atoi_long(tmp[x]);
-		check_int(num);
-		if (check_duplicate(stack, num))
-			error_and_clean(tmp, stack, 1);
-		new_nodo = create_nodo(num);
-		add_nodo_end(stack, new_nodo);
-		x++;
-	}
 }
 
 void	check_number(char *str)

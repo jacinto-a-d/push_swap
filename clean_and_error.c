@@ -6,12 +6,11 @@
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 18:48:18 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/02 19:29:44 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/03 13:12:19 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "printf/ft_printf.h"
 
 void	error_and_clean(char **tmp, t_stack **stack, int n)
 {

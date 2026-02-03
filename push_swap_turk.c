@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_hex_may.c                                   :+:      :+:    :+:   */
+/*   push_swap_turk.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/04 19:15:19 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/01/08 14:43:20 by jabad-di         ###   ########.fr       */
+/*   Created: 2026/02/02 18:48:03 by jabad-di          #+#    #+#             */
+/*   Updated: 2026/02/03 19:17:20 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
-int	ft_put_hex_may(unsigned int x)
+t_stack	*init_stack(t_stack **stack_a, char **argv)
 {
-	char			*ar;
-	unsigned int	tmp;
+	char	**tmp;
+	long	num;
+	int		i;
+	int		x;
 
-	ar = "0123456789ABCDEF";
-	tmp = 0;
-	if (x == 0)
+	i = 1;
+	num = 0;
+	while (argv[i])
 	{
-		write (1, "0", 1);
-		return (1);
+		tmp = ft_split(argv[i], ' ');
+		if (!tmp)
+			return (NULL);
+		x = 0;
+		process_validation_create(stack_a, tmp);
+		error_and_clean(tmp, stack_a, 0);
+		i++;
 	}
-	if (x >= 16)
-	{
-		tmp = ft_put_hex_may(x / 16);
-		write (1, &ar[x % 16], 1);
-	}
-	else
-		write (1, &ar[x], 1);
-	return (tmp + 1);
+	if (*stack_a)
+		index_list(stack_a);
+	return (*stack_a);
 }

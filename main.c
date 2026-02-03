@@ -5,53 +5,41 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 19:02:17 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/02 19:02:41 by jabad-di         ###   ########.fr       */
+/*   Created: 2026/02/03 18:26:48 by jabad-di          #+#    #+#             */
+/*   Updated: 2026/02/03 18:59:23 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <stdlib.h>
-#include "printf/ft_printf.h"
-#include "push_swap.h" // Asegúrate de tener tus prototipos aquí
+#include "push_swap.h"
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	t_stack	*stack_a;
-	t_stack	*aux;
+    t_stack *stack_a;
+    t_stack *tmp;
 
-	stack_a = NULL;
-	if (argc < 2)
-		return (0);
-	
-	// Llamamos a tu función pasándole el puntero a la dirección de stack_a
-	init_stack(&stack_a, argv);
+    stack_a = NULL;
+    if (argc < 2)
+        return (0);
+    
+    stack_a = init_stack(&stack_a, argv);
+    if (!stack_a) // Siempre protege por si init_stack falla
+        return (0);
 
-	// --- BLOQUE DE COMPROBACIÓN ---
-	if (!stack_a)
-	{
-		printf("El stack está vacío o hubo un error.\n");
-		return (1);
-	}
+    // 1. Imprimimos el primer nodo manualmente
+    tmp = stack_a;
+    printf("Nodo: %d (index: %d)\n", tmp->value, tmp->index);
+    
+    // 2. Movemos tmp al segundo nodo
+    tmp = tmp->next;
 
-	printf("Contenido del Stack A (Circular):\n");
-	aux = stack_a;
-	// Al ser circular, usamos un do-while para imprimir hasta volver al inicio
-	do
-	{
-		printf("Nodo: %d\n", aux->value);
-		aux = aux->next;
-	} while (aux != stack_a);
+    // 3. El bucle se detiene cuando vuelve a ser el inicio
+    while (tmp != stack_a)
+    {
+        printf("Nodo: %d (index: %d)\n", tmp->value, tmp->index);
+        tmp = tmp->next;
+    }
 
-	// Comprobamos la circularidad hacia atrás (prev)
-	printf("Último nodo conectado al primero (prev): %d\n", stack_a->prev->value);
-
-	// --- LIMPIEZA FINAL ---
-	// Usamos tu función free_stack para no dejar leaks al terminar el programa
-	free_stack(&stack_a);
-	
-	if (stack_a == NULL)
-		printf("Memoria liberada correctamente.\n");
-
-	return (0);
+    free_stack(&stack_a);
+    return (0);
 }

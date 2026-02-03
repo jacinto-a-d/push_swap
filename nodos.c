@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   nodos.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 13:29:26 by dipekko           #+#    #+#             */
-/*   Updated: 2026/02/03 01:57:54 by dipekko          ###   ########.fr       */
+/*   Updated: 2026/02/03 18:57:52 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "printf/ft_printf.h"
 
 t_stack	*create_nodo(int value)
 {
@@ -30,7 +29,7 @@ t_stack	*create_nodo(int value)
 	return (nodo);
 }
 
-t_stack	*add_nodo_end(t_stack **stack, t_stack *new_nodo)
+void	add_nodo_end(t_stack **stack, t_stack *new_nodo)
 {
 	t_stack	*first;
 	t_stack	*last;
@@ -50,4 +49,22 @@ t_stack	*add_nodo_end(t_stack **stack, t_stack *new_nodo)
 		new_nodo->next = first;
 		first->prev = new_nodo;
 	}
+}
+
+int	list_size_circular(t_stack *stack)
+{
+	t_stack	*ptr;
+	int		i;
+
+	
+	if (!stack)
+		return (0);
+	i = 1;
+	ptr = stack->next;
+	while (ptr != stack)
+	{
+		i++;
+		ptr = ptr->next;
+	}
+	return (i);
 }
