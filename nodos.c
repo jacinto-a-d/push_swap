@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   nodos.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 13:29:26 by dipekko           #+#    #+#             */
-/*   Updated: 2026/02/02 19:20:22 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/03 01:57:54 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ t_stack	*create_nodo(int value)
 	nodo->push_cost = 0;
 	nodo->above_median = 0;
 	nodo->target_node = NULL;
-	nodo->next = NULL;
-	nodo->prev = NULL;
+	nodo->next = nodo;
+	nodo->prev = nodo;
 	return (nodo);
 }
 

@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 18:48:03 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/02 19:22:23 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/03 02:50:38 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf/ft_printf.h"
 #include "push_swap.h"
+#include <stdio.h>
 
 t_stack	*init_stack(t_stack **stack_a, char **argv)
 {
 	char	**tmp;
-	int		num;
+	long	num;
 	int		i;
 	int		x;
 	t_stack	*new_nodo;
 
-	i = 0;
+	i = 1;
 	num = 0;
 	while (argv[i])
 	{
@@ -29,15 +29,7 @@ t_stack	*init_stack(t_stack **stack_a, char **argv)
 		if (!tmp)
 			return (NULL);
 		x = 0;
-		while (tmp[x])
-		{
-			num = atoi_long_check_int(tmp[x]);
-			if (check_duplicate(*stack_a, num))
-				error_and_clean(tmp, stack_a, 1);
-			new_nodo = create_node(num);
-			add_nodo_end(stack_a, new_nodo);
-			x++;
-		}
+		process_validation_create(stack_a, tmp);
 		error_and_clean(tmp, stack_a, 0);
 		i++;
 	}
