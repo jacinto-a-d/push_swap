@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 18:56:09 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/03 19:26:24 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/06 22:38:52 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,79 @@ int	atoi_long(const char *str)
 		str++;
 	}
 	return (result * sign);
+}
+
+void	get_above_median(t_stack *stack)
+{
+	t_stack		*tmp;
+	int			x;
+	int			size;
+	int			median;
+	
+	x = 0;
+	median = 0;
+	size = 0;
+	if (!stack)
+		return ;
+	size = list_size_circular(stack);
+	median = size / 2;
+	tmp = stack;
+	while (1)
+	{
+		if (x <= median)
+			stack->above_median = 1;
+		else
+			stack->above_median = 0;
+		stack = stack->next;
+		if (stack == tmp)
+			break;
+	}	
+}
+
+t_stack *find_max(t_stack *stack)
+{
+	t_stack 	*max_node;
+	t_stack		*tmp;
+	long		max_index;
+	
+	if (!stack)
+		return (NULL);
+	tmp = stack;
+	max_index = -2147483649;
+	while (1)
+	{
+		if (stack->index > max_index)
+		{
+			max_index = stack->index;
+			max_node = stack;
+		}
+		stack = stack->next;
+		if (stack == tmp)
+			break ;
+	}
+	return (max_node);
+}
+
+t_stack *find_min(t_stack *stack)
+{
+	t_stack 	*min_node;
+	t_stack		*tmp;
+	long		min_index;
+	
+	if (!stack)
+		return (NULL);
+	tmp = stack;
+	min_index = 2147483648;
+	while (1)
+	{
+		if (stack->index > min_index)
+		{
+			min_index = stack->index;
+			min_node = stack;
+		}
+		stack = stack->next;
+		if (stack == tmp)
+			break ;
+	}
+	return (min_node);
 }

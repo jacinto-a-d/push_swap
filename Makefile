@@ -5,12 +5,16 @@ CFLAGS      = -Wall -Wextra -Werror
 
 SRCS        = push_swap_turk.c \
               clean_and_error.c \
-              split.c \
+              ft_split.c \
               nodos.c \
               check.c \
               index.c \
               utils.c \
-			  main.c
+			  sa_sb_ss.c \
+			  spa_pb.c \
+			  sra_rb_rr.c \
+			  srra_rrb_rrr.c \
+			  main.c \
 
 OBJS        = $(SRCS:.c=.o)
 
