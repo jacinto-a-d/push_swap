@@ -1,0 +1,40 @@
+FUNCION calcular_coste(pila_a, pila_b):
+    TAMAÑO_A = contar_elementos(pila_a)
+    TAMAÑO_B = contar_elementos(pila_b)
+
+    PARA CADA nodo EN pila_a:
+        
+        # CASO 1: AMBOS ARRIBA (Se pueden usar movimientos RR)
+        SI (nodo.arriba_mediana Y nodo.target.arriba_mediana):
+            # El coste es el máximo de los dos, porque se solapan
+            SI (nodo.pos > nodo.target.pos):
+                nodo.coste = nodo.pos
+            SINO:
+                nodo.coste = nodo.target.pos
+
+        # CASO 2: AMBOS ABAJO (Se pueden usar movimientos RRR)
+        SINO SI (nodo.abajo_mediana Y nodo.target.abajo_mediana):
+            distancia_a = TAMAÑO_A - nodo.pos
+            distancia_b = TAMAÑO_B - nodo.target.pos
+            # El coste es el máximo de las distancias al fondo
+            SI (distancia_a > distancia_b):
+                nodo.coste = distancia_a
+            SINO:
+                nodo.coste = distancia_b
+
+        # CASO 3: DIRECCIONES OPUESTAS (No hay ahorro posible)
+        SINO:
+            # Calculamos coste individual de A
+            SI (nodo.arriba_mediana):
+                coste_a = nodo.pos
+            SINO:
+                coste_a = TAMAÑO_A - nodo.pos
+            
+            # Calculamos coste individual de B
+            SI (nodo.target.arriba_mediana):
+                coste_b = nodo.target.pos
+            SINO:
+                coste_b = TAMAÑO_B - nodo.target.pos
+            
+            # El coste total es la suma de ambos
+            nodo.coste = coste_a + coste_b

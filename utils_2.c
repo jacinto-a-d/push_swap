@@ -8,14 +8,14 @@
 t_stack *find_cheapest(t_stack *stack)
 {
     t_stack *cheapest_node;
-    t_stack *start;
+    t_stack *tmp;
     long    best_value;
 
     if (!stack)
         return (NULL);
     
-    start = stack;
-    best_value = 2147483648LL; // Valor mayor que INT_MAX
+    tmp = stack;
+    best_value = 2147483648; 
     cheapest_node = NULL;
 
     while (1)
@@ -26,7 +26,7 @@ t_stack *find_cheapest(t_stack *stack)
             cheapest_node = stack;
         }
         stack = stack->next;
-        if (stack == start)
+        if (tmp == stack)
             break;
     }
     return (cheapest_node);

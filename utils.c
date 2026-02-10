@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 18:56:09 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/06 22:38:52 by dipekko          ###   ########.fr       */
+/*   Updated: 2026/02/10 17:15:26 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ t_stack *find_max(t_stack *stack)
 		return (NULL);
 	tmp = stack;
 	max_index = -2147483649;
+	max_node = NULL;
 	while (1)
 	{
 		if (stack->index > max_index)
@@ -114,24 +115,25 @@ t_stack *find_max(t_stack *stack)
 
 t_stack *find_min(t_stack *stack)
 {
-	t_stack 	*min_node;
 	t_stack		*tmp;
-	long		min_index;
-	
-	if (!stack)
+	t_stack		*min_node;
+	long 		min_index;
+
+	min_index = 2147483649;
+	if(!stack)
 		return (NULL);
 	tmp = stack;
-	min_index = 2147483648;
+	min_node = NULL;
 	while (1)
 	{
-		if (stack->index > min_index)
+		if (stack->index < min_index)
 		{
 			min_index = stack->index;
 			min_node = stack;
 		}
 		stack = stack->next;
-		if (stack == tmp)
-			break ;
+	if (stack == tmp)
+		break ;
 	}
 	return (min_node);
 }

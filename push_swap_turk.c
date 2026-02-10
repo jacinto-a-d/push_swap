@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_turk.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 18:48:03 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/06 22:36:22 by dipekko          ###   ########.fr       */
+/*   Updated: 2026/02/10 17:52:08 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,15 @@ void	set_target_b(t_stack *a, t_stack *b)
 
 void	push_cost(t_stack *a, t_stack *b)
 {
-	t_stack		*tmp_a;
+	t_stack		*tmp;
 	int			size_a;
 	int			size_b;
 
 	if (!a)
 		return ;
-	size_a = 0;
-	size_b = 0;
 	size_a = list_size_circular(a);
 	size_b = list_size_circular(b);
-	tmp_a = a;
+	tmp = a;
 	while (1)
 	{
 		if (a->above_median)
@@ -89,9 +87,9 @@ void	push_cost(t_stack *a, t_stack *b)
 		if (a->target_node->above_median)
 			a->push_cost += a->target_node->pos;
 		else
-			a->push_cost += size_b - a->target_node->pos;\
+			a->push_cost += size_b - a->target_node->pos;
 		a = a->next;
-		if (a == tmp_a)
+		if (a == tmp)
 			break ;
 	}
 }
