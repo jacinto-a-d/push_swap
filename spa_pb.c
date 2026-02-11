@@ -1,13 +1,21 @@
-
-
-// EL HEADER
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   spa_pb.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/11 14:54:04 by jabad-di          #+#    #+#             */
+/*   Updated: 2026/02/11 15:15:54 by jabad-di         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
 static void	add_to_dest(t_stack **dest, t_stack *node)
 {
 	t_stack		*last_node;
-	
+
 	last_node = (*dest)->prev;
 	node->next = *dest;
 	node->prev = last_node;
@@ -45,11 +53,11 @@ static int	push(t_stack **dest, t_stack **src)
 void	pa(t_stack **a, t_stack **b)
 {
 	if (push(a, b))
-	write (1, "pa\n", 3);
+		write (1, "pa\n", 3);
 }
 
 void	pb(t_stack **b, t_stack **a)
 {
 	if (push(b, a))
-	write (1, "pb\n", 3);
+		write (1, "pb\n", 3);
 }

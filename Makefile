@@ -3,13 +3,15 @@ NAME        = push_swap
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
 
-SRCS        = push_swap_turk.c \
+SRCS        = parse.c \
               clean_and_error.c \
+			  push_cost.c \
               ft_split.c \
               nodos.c \
               check.c \
               index.c \
               utils.c \
+			  utils_2.c \
 			  sa_sb_ss.c \
 			  spa_pb.c \
 			  sra_rb_rr.c \

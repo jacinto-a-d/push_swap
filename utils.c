@@ -6,37 +6,11 @@
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 18:56:09 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/10 17:15:26 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/11 16:20:39 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	process_validation_create(t_stack **stack, char **tmp)
-{
-	int		x;
-	long	num;
-	t_stack	*new_nodo;
-
-	x = 0;
-	num = 0;
-	if(!tmp || !tmp[0])
-	{
-		write (2, "ERROR\n", 6);
-		exit (1);
-	}
-	while (tmp[x])
-	{
-		check_number(tmp[x]);
-		num = atoi_long(tmp[x]);
-		check_int(num);
-		if (check_duplicate(stack, num))
-			error_and_clean(tmp, stack, 1);
-		new_nodo = create_nodo(num);
-		add_nodo_end(stack, new_nodo);
-		x++;
-	}
-}
 
 int	atoi_long(const char *str)
 {
@@ -67,7 +41,7 @@ void	get_above_median(t_stack *stack)
 	int			x;
 	int			size;
 	int			median;
-	
+
 	x = 0;
 	median = 0;
 	size = 0;
@@ -84,16 +58,16 @@ void	get_above_median(t_stack *stack)
 			stack->above_median = 0;
 		stack = stack->next;
 		if (stack == tmp)
-			break;
-	}	
+			break ;
+	}
 }
 
-t_stack *find_max(t_stack *stack)
+t_stack	*find_max(t_stack *stack)
 {
-	t_stack 	*max_node;
+	t_stack		*max_node;
 	t_stack		*tmp;
 	long		max_index;
-	
+
 	if (!stack)
 		return (NULL);
 	tmp = stack;
@@ -113,14 +87,14 @@ t_stack *find_max(t_stack *stack)
 	return (max_node);
 }
 
-t_stack *find_min(t_stack *stack)
+t_stack	*find_min(t_stack *stack)
 {
-	t_stack		*tmp;
-	t_stack		*min_node;
-	long 		min_index;
+	t_stack			*tmp;
+	t_stack			*min_node;
+	long			min_index;
 
 	min_index = 2147483649;
-	if(!stack)
+	if (!stack)
 		return (NULL);
 	tmp = stack;
 	min_node = NULL;
@@ -132,8 +106,8 @@ t_stack *find_min(t_stack *stack)
 			min_node = stack;
 		}
 		stack = stack->next;
-	if (stack == tmp)
-		break ;
+		if (stack == tmp)
+			break ;
 	}
 	return (min_node);
 }

@@ -3,110 +3,97 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 18:26:48 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/06 21:00:39 by dipekko          ###   ########.fr       */
+/*   Updated: 2026/02/11 17:07:58 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h> // Para printf
 
-// Función para imprimir lista circular
-
-#include "push_swap.h"
-
-// Crea un nodo nuevo
-t_stack	*stack_new(int value)
+// Función pequeña para ordenar exactamente 3 números en A
+static void	sort_three(t_stack **a)
 {
-	t_stack	*node;
+	t_stack	*max;
 
-	node = malloc(sizeof(t_stack));
-	if (!node)
-		return (NULL);
-	node->value = value;
-	node->next = node; // En circular, un solo nodo apunta a sí mismo
-	return (node);
+	max = find_max(*a);
+	if (*a == max)
+		ra(a);
+	else if ((*a)->next == max)
+		rra(a);
+	if ((*a)->value > (*a)->next->value)
+		sa(a);
 }
 
-// Añade un nodo al final y mantiene el círculo
-void	stack_add_back(t_stack **stack, t_stack *new_node)
+// Función final para que el número más pequeño quede arriba de todo
+static void	min_on_top(t_stack **a)
 {
-	t_stack	*last;
+	t_stack	*min;
 
-	if (!stack || !new_node)
-		return ;
-	if (!*stack)
+	min = find_min(*a);
+	while (*a != min)
 	{
-		*stack = new_node;
-		return ;
+		if (min->above_median)
+			ra(a);
+		else
+			rra(a);
 	}
-	last = *stack;
-	// Buscamos el último: en circular, el último es el que apunta al primero
-	while (last->next != *stack)
-		last = last->next;
-	
-	last->next = new_node;   // El viejo último apunta al nuevo
-	new_node->next = *stack; // El nuevo apunta al primero (cerramos el círculo)
 }
 
-void print_circular_stack(t_stack *stack, char *name)
+// El motor que coordina el algoritmo "Turk"
+void	handle_stacks(t_stack **a, t_stack **b)
 {
-    if (!stack)
-    {
-        printf("Stack %s: VACÍO\n", name);
-        return;
-    }
-    t_stack *temp = stack;
-    printf("Stack %s: ", name);
-    while (1)
-    {
-        printf("%d ", temp->value);
-        temp = temp->next;
-        if (temp == stack) // Si volvemos al inicio, paramos
-            break;
-    }
-    printf("(circular OK)\n");
+	int	len_a;
+
+	len_a = list_size_circular(*a);
+	// 1. Mandamos nodos a B hasta que solo queden 3 en A
+	// Mandamos los dos primeros de golpe para empezar
+	if (len_a-- > 3)
+		pb(b, a);
+	if (len_a-- > 3)
+		pb(b, a);
+	while (len_a-- > 3)
+	{
+		index_list(a); // Actualiza posiciones
+		index_list(b);
+		get_above_median(*a); // Calcula medianas
+		get_above_median(*b);
+		set_target_b(*a, *b); // Busca objetivos
+		push_cost(*a, *b);    // Calcula precios
+		// Aquí deberías llamar a move_node con el cheapest
+		// move_node(a, b, find_cheapest(*a));
+	}
+	sort_three(a);
+	// 2. Aquí vendría la lógica para devolver de B a A
+	// (Normalmente otra función similar a move_node pero inversa)
+	min_on_top(a);
 }
 
-int main(void)
+int	main(int argc, char **argv)
 {
-    t_stack *a = NULL;
-    t_stack *b = NULL;
+	t_stack	*a;
+	t_stack	*b;
 
-    // 1. CREACIÓN DE LA LISTA
-    // Importante: Tus funciones de nodos deben cerrar el círculo
-    stack_add_back(&a, stack_new(10));
-    stack_add_back(&a, stack_new(20));
-    stack_add_back(&a, stack_new(30));
-    
-    // Ponemos algo en B para probar rr
-    stack_add_back(&b, stack_new(100));
-    stack_add_back(&b, stack_new(200));
-
-    printf("--- ESTADO INICIAL ---\n");
-    print_circular_stack(a, "A");
-    print_circular_stack(b, "B");
-    printf("----------------------\n\n");
-
-    // 2. PRUEBA DE RA (Debería imprimir "ra\n")
-    printf("Acción esperada: ra\n");
-    ra(&a); 
-    print_circular_stack(a, "A"); // Resultado: 20 30 10
-    printf("\n");
-
-    // 3. PRUEBA DE RR (Debería imprimir "rr\n" y NADA MÁS)
-    printf("Acción esperada: rr\n");
-    rr(&a, &b); 
-    print_circular_stack(a, "A"); // Resultado: 30 10 20
-    print_circular_stack(b, "B"); // Resultado: 200 100
-    printf("\n");
-
-    // 4. PRUEBA DE RB (Debería imprimir "rb\n")
-    printf("Acción esperada: rb\n");
-    rb(&b);
-    print_circular_stack(b, "B"); // Resultado: 100 200
-
-    return (0);
+	a = NULL;
+	b = NULL;
+	if (argc < 2 || (argc == 2 && !argv[1][0]))
+		return (0);
+	// Inicializamos y validamos (parseo)
+	push_swap_init(&a, argv);
+	if (!a)
+		return (0);
+	// Si no está ordenado, entramos en acción
+	// Nota: Falta definir is_sorted o similar
+	if (list_size_circular(a) == 2)
+		sa(&a);
+	else if (list_size_circular(a) == 3)
+		sort_three(&a);
+	else if (list_size_circular(a) > 3)
+		handle_stacks(&a, &b);
+	free_stack(&a);
+	// Si b no está vacía por algún error, liberarla también
+	if (b)
+		free_stack(&b);
+	return (0);
 }

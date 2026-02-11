@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 15:25:07 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/06 22:45:57 by dipekko          ###   ########.fr       */
+/*   Updated: 2026/02/11 17:10:44 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ typedef struct s_stack
 }					t_stack;
 
 t_stack	*create_nodo(int value);
-t_stack	*init_stack(t_stack **stack_a, char **argv);
-t_stack *find_max(t_stack *stack);
-t_stack *find_min(t_stack *stack);
+t_stack	*push_swap_init(char **argv);
+t_stack	*find_max(t_stack *stack);
+t_stack	*find_min(t_stack *stack);
 
 void	add_nodo_end(t_stack **stack, t_stack *new_nodo);
 void	error_and_clean(char **tmp, t_stack **stack, int n);
@@ -56,6 +56,7 @@ void	sb(t_stack **b);
 void	sa(t_stack **a);
 void	set_target_b(t_stack *a, t_stack *b);
 void	push_cost(t_stack *a, t_stack *b);
+void	move_node(t_stack **a, t_stack **b, t_stack *cheapest);
 
 int		index_nodo(t_stack **stack_a, int ohter_value);
 int		check_duplicate(t_stack **stack, int num);

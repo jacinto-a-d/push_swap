@@ -6,7 +6,7 @@
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 13:29:26 by dipekko           #+#    #+#             */
-/*   Updated: 2026/02/03 18:57:52 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/11 10:55:44 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,9 @@ void	add_nodo_end(t_stack **stack, t_stack *new_nodo)
 
 int	list_size_circular(t_stack *stack)
 {
-	t_stack	*ptr;
-	int		i;
+	t_stack		*ptr;
+	int			i;
 
-	
 	if (!stack)
 		return (0);
 	i = 1;
