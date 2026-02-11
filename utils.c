@@ -6,7 +6,7 @@
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 18:56:09 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/11 16:20:39 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/11 19:25:02 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,20 @@ t_stack	*find_min(t_stack *stack)
 			break ;
 	}
 	return (min_node);
+}
+
+int	is_sorted(t_stack *stack)
+{
+	t_stack	*head;
+
+	if (!stack)
+		return (1);
+	head = stack;
+	while (stack->next != head)
+	{
+		if (stack->value > stack->next->value)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
 }

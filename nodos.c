@@ -6,7 +6,7 @@
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 13:29:26 by dipekko           #+#    #+#             */
-/*   Updated: 2026/02/11 10:55:44 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/11 19:13:45 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,62 @@ int	list_size_circular(t_stack *stack)
 		ptr = ptr->next;
 	}
 	return (i);
+}
+
+void move_node(t_stack **a, t_stack **b, t_stack *cheapest)
+{
+	if (cheapest->above_median && cheapest->target_node->above_median)
+	{
+		while ((*a) != cheapest && (*b) != cheapest->target_node)
+			rr(a, b);
+	}
+	else if (cheapest->above_median && cheapest->target_node->above_median)
+	{ 
+		while ((*a) != cheapest && (*b) != cheapest->target_node)
+			rrr(a, b);
+	}
+	while ((*a) != cheapest)
+	{
+		if ((*a)->above_median)
+			ra(a);
+		else
+			rra(a);
+	}
+	while ((*b) != cheapest->target_node)
+	{
+		if ((*b)->above_median)
+			rb(b);
+		else
+			rrb(b);
+	}
+	pb(b, a);
+}
+
+void inverse_move_node(t_stack **b, t_stack **a, t_stack *cheapest)
+{
+	if (cheapest->above_median && cheapest->target_node->above_median)
+	{
+		while ((*b) != cheapest && (*a) != cheapest->target_node)
+			rr(a, b);
+	}
+	else if (cheapest->above_median && cheapest->target_node->above_median)
+	{ 
+		while ((*b) != cheapest && (*a) != cheapest->target_node)
+			rrr(a, b);
+	}
+	while ((*b) != cheapest)
+	{
+		if ((*b)->above_median)
+			rb(b);
+		else
+			rrb(b);
+	}
+	while ((*a) != cheapest->target_node)
+	{
+		if ((*a)->above_median)
+			ra(a);
+		else
+			rra(a);
+	}
+	pa(a, b);
 }

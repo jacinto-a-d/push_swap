@@ -6,7 +6,7 @@
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 18:48:03 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/11 17:10:08 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/11 19:33:55 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 t_stack	*push_swap_init(char **argv)
 {
-	t_stack		**stack_a;
+	t_stack		*stack_a;
 	char		**tmp;
 	int			i;
 
 	i = 1;
-	*stack_a = NULL;
+	stack_a = NULL;
 	while (argv[i])
 	{
 		tmp = ft_split(argv[i], ' ');
 		if (!tmp)
 			return (NULL);
-		process_validation_create(stack_a, tmp);
-		error_and_clean(tmp, stack_a, 0);
+		process_validation_create(&stack_a, tmp);
+		error_and_clean(tmp, &stack_a, 0);
 		i++;
 	}
 	if (stack_a)
-		index_list(stack_a);
+		index_list(&stack_a);
 	return (stack_a);
 }
 

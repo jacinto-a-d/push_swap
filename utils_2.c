@@ -6,7 +6,7 @@
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 14:54:27 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/11 16:54:29 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/11 19:14:27 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,31 +80,29 @@ t_stack	*find_cheapest(t_stack *stack)
 	return (cheapest_node);
 }
 
-void move_node(t_stack **a, t_stack **b, t_stack *cheapest)
+void	sort_three(t_stack **a)
 {
-	if (cheapest->above_median && cheapest->target_node->above_median)
+	t_stack	*max;
+
+	max = find_max(*a);
+	if (*a == max)
+		ra(a);
+	else if ((*a)->next == max)
+		rra(a);
+	if ((*a)->value > (*a)->next->value)
+		sa(a);
+}
+
+void	min_on_top(t_stack **a)
+{
+	t_stack	*min;
+
+	min = find_min(*a);
+	while (*a != min)
 	{
-		while ((*a) != cheapest && (*b) != cheapest->target_node)
-			rr(a, b);
-	}
-	else if (cheapest->above_median && cheapest->target_node->above_median)
-	{ 
-		while ((*a) != cheapest && (*b) != cheapest->target_node)
-			rrr(a, b);
-	}
-	while ((*a) != cheapest)
-	{
-		if ((*a)->above_median)
+		if (min->above_median)
 			ra(a);
 		else
 			rra(a);
 	}
-	while ((*b) != cheapest->target_node)
-	{
-		if ((*b)->above_median)
-			rb(b);
-		else
-			rrb(b);
-	}
-	pb(b, a);
 }

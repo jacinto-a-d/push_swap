@@ -6,7 +6,7 @@
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 15:25:07 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/11 17:10:44 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/11 19:44:10 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_stack	*create_nodo(int value);
 t_stack	*push_swap_init(char **argv);
 t_stack	*find_max(t_stack *stack);
 t_stack	*find_min(t_stack *stack);
+t_stack	*find_cheapest(t_stack *stack);
 
 void	add_nodo_end(t_stack **stack, t_stack *new_nodo);
 void	error_and_clean(char **tmp, t_stack **stack, int n);
@@ -54,14 +55,19 @@ void	pa(t_stack **a, t_stack **b);
 void	ss(t_stack **a, t_stack **b);
 void	sb(t_stack **b);
 void	sa(t_stack **a);
+void	sort_three(t_stack **a);
+void	min_on_top(t_stack **a);
 void	set_target_b(t_stack *a, t_stack *b);
 void	push_cost(t_stack *a, t_stack *b);
 void	move_node(t_stack **a, t_stack **b, t_stack *cheapest);
+void	inverse_move_node(t_stack **b, t_stack **a, t_stack *cheapest);
+void	handle_stacks(t_stack **a, t_stack **b);
 
 int		index_nodo(t_stack **stack_a, int ohter_value);
 int		check_duplicate(t_stack **stack, int num);
 int		atoi_long(const char *str);
 int		list_size_circular(t_stack *stack);
+int		is_sorted(t_stack *stack);
 
 char	**ft_split(char const *s, char c);
 
