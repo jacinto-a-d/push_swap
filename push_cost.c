@@ -6,7 +6,7 @@
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 14:53:23 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/11 15:29:40 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/12 19:53:32 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	push_cost(t_stack *a, t_stack *b)
 	int			size_a;
 	int			size_b;
 
-	if (!a)
+	if (!a || !b)
 		return ;
 	size_a = list_size_circular(a);
 	size_b = list_size_circular(b);

@@ -6,7 +6,7 @@
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 13:29:26 by dipekko           #+#    #+#             */
-/*   Updated: 2026/02/11 19:13:45 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/12 19:24:16 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,21 +75,21 @@ void move_node(t_stack **a, t_stack **b, t_stack *cheapest)
 		while ((*a) != cheapest && (*b) != cheapest->target_node)
 			rr(a, b);
 	}
-	else if (cheapest->above_median && cheapest->target_node->above_median)
+	else if (!cheapest->above_median && !cheapest->target_node->above_median)
 	{ 
 		while ((*a) != cheapest && (*b) != cheapest->target_node)
 			rrr(a, b);
 	}
 	while ((*a) != cheapest)
 	{
-		if ((*a)->above_median)
+		if (cheapest->above_median)
 			ra(a);
 		else
 			rra(a);
 	}
 	while ((*b) != cheapest->target_node)
 	{
-		if ((*b)->above_median)
+		if (cheapest->target_node->above_median)
 			rb(b);
 		else
 			rrb(b);
@@ -97,28 +97,32 @@ void move_node(t_stack **a, t_stack **b, t_stack *cheapest)
 	pb(b, a);
 }
 
-void inverse_move_node(t_stack **b, t_stack **a, t_stack *cheapest)
+void inverse_move_node(t_stack **b, t_stack **a)
 {
+	t_stack		*cheapest;
+	
+	cheapest = find_cheapest(*b);
+	if (!cheapest->target_node || (*b == cheapest && (*b)->next == *b))
+    {	
+		pa(a, b);
+		return ;
+	}
 	if (cheapest->above_median && cheapest->target_node->above_median)
-	{
 		while ((*b) != cheapest && (*a) != cheapest->target_node)
 			rr(a, b);
-	}
-	else if (cheapest->above_median && cheapest->target_node->above_median)
-	{ 
+	else if (!cheapest->above_median && !cheapest->target_node->above_median)
 		while ((*b) != cheapest && (*a) != cheapest->target_node)
 			rrr(a, b);
-	}
 	while ((*b) != cheapest)
 	{
-		if ((*b)->above_median)
+		if (cheapest->above_median)
 			rb(b);
 		else
 			rrb(b);
 	}
 	while ((*a) != cheapest->target_node)
 	{
-		if ((*a)->above_median)
+		if (cheapest->target_node->above_median)
 			ra(a);
 		else
 			rra(a);

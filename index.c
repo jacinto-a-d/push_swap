@@ -3,32 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   index.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 14:35:52 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/06 22:29:00 by dipekko          ###   ########.fr       */
+/*   Updated: 2026/02/12 18:32:06 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 int	index_nodo(t_stack **stack_a, int other_value)
 {
 	t_stack		*tmp;
 	int			count;
 
+	if (!stack_a ||!*stack_a)
+		return (0);
 	count = 0;
-	if ((*stack_a)->value < other_value)
-		count++;
-	tmp = (*stack_a)->next;
-	while (tmp != (*stack_a))
+	tmp = *stack_a;
+	while (1)
 	{
-		if (tmp->value < other_value)
+		if (other_value < tmp->value)
 			count++;
 		tmp = tmp->next;
+		if (tmp == *stack_a)
+			break ;
 	}
 	return (count);
 }
+
 
 void	index_list(t_stack **stack_a)
 {
@@ -36,11 +40,12 @@ void	index_list(t_stack **stack_a)
 
 	if (!stack_a || !*stack_a)
 		return ;
-	(*stack_a)->index = index_nodo(stack_a, (*stack_a)->value);
-	tmp = (*stack_a)->next;
-	while (tmp != (*stack_a))
+	tmp = *stack_a;
+	while (1)
 	{
 		tmp->index = index_nodo(stack_a, tmp->value);
 		tmp = tmp->next;
+		if (tmp == *stack_a)
+			break ;
 	}
 }

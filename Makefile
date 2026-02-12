@@ -1,13 +1,14 @@
 NAME        = push_swap
 
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror
+CFLAGS      = -Wall -Wextra -Werror -g
 
 SRCS        = parse.c \
               clean_and_error.c \
 			  push_cost.c \
               ft_split.c \
               nodos.c \
+			  target.c \
               check.c \
               index.c \
               utils.c \

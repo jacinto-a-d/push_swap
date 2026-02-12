@@ -6,16 +6,17 @@
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 18:48:03 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/11 20:31:38 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/12 14:26:01 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*push_swap_init(t_stack *stack, char **argv)
+t_stack	*push_swap_init(char **argv)
 {
 	char		**tmp;
 	int			i;
+	t_stack		*stack;
 
 	i = 1;
 	stack = NULL;

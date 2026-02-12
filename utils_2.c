@@ -6,54 +6,11 @@
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 14:54:27 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/11 19:14:27 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/12 19:44:48 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	set_target(t_stack *a, t_stack *b)
-{
-	t_stack		*current_b;
-	t_stack		*target_node;
-	long		best_index;
-
-	best_index = -2147483649;
-	current_b = b;
-	while (1)
-	{
-		if (current_b->index < a->index && current_b->index > best_index)
-		{
-			best_index = current_b->index;
-			target_node = current_b;
-		}
-		current_b = current_b->next;
-		if (current_b == b)
-			break ;
-	}
-	return (best_index);
-}
-
-void	set_target_b(t_stack *a, t_stack *b)
-{
-	t_stack		*target_node;
-	t_stack		*tmp_a;
-	long		best_index;
-
-	tmp_a = a;
-	target_node = NULL;
-	while (1)
-	{
-		best_index = set_target(a, b);
-		if (best_index == -2147483649)
-			a->target_node = find_max(b);
-		else
-			a->target_node = target_node;
-		a = a->next;
-		if (a == tmp_a)
-			break ;
-	}
-}
 
 t_stack	*find_cheapest(t_stack *stack)
 {
@@ -105,4 +62,23 @@ void	min_on_top(t_stack **a)
 		else
 			rra(a);
 	}
+}
+
+void    current_pos(t_stack *stack)
+{
+    int     i;
+    t_stack *tmp;
+
+    if (!stack)
+        return ;
+    i = 0;
+    tmp = stack;
+    while (1)
+    {
+        stack->pos = i;
+		i++;
+        stack = stack->next;
+        if (stack == tmp)
+            break ;
+    }
 }
