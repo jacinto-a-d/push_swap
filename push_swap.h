@@ -6,7 +6,7 @@
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 15:25:07 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/11 19:44:10 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/11 20:31:07 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_stack
 }					t_stack;
 
 t_stack	*create_nodo(int value);
-t_stack	*push_swap_init(char **argv);
+t_stack	*push_swap_init(t_stack *stack, char **argv);
 t_stack	*find_max(t_stack *stack);
 t_stack	*find_min(t_stack *stack);
 t_stack	*find_cheapest(t_stack *stack);

@@ -6,7 +6,7 @@
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 18:26:48 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/11 19:39:11 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/11 20:32:02 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,14 @@ int	main(int argc, char **argv)
 	b = NULL;
 	if (argc < 2 || (argc == 2 && !argv[1][0]))
 		return (0);
-	push_swap_init(argv);
+	push_swap_init(a, argv);
 	if (!a)
 		return (0);
 	is_sorted(a);
 	if (list_size_circular(a) == 2)
+	{
 		sa(&a);
+	}
 	else if (list_size_circular(a) == 3)
 		sort_three(&a);
 	else if (list_size_circular(a) > 3)

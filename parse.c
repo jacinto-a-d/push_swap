@@ -6,32 +6,31 @@
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 18:48:03 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/11 19:33:55 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/11 20:31:38 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*push_swap_init(char **argv)
+t_stack	*push_swap_init(t_stack *stack, char **argv)
 {
-	t_stack		*stack_a;
 	char		**tmp;
 	int			i;
 
 	i = 1;
-	stack_a = NULL;
+	stack = NULL;
 	while (argv[i])
 	{
 		tmp = ft_split(argv[i], ' ');
 		if (!tmp)
 			return (NULL);
-		process_validation_create(&stack_a, tmp);
-		error_and_clean(tmp, &stack_a, 0);
+		process_validation_create(&stack, tmp);
+		error_and_clean(tmp, &stack, 0);
 		i++;
 	}
-	if (stack_a)
-		index_list(&stack_a);
-	return (stack_a);
+	if (stack)
+		index_list(&stack);
+	return (stack);
 }
 
 void	process_validation_create(t_stack **stack, char **tmp)
