@@ -64,6 +64,8 @@ void	move_node(t_stack **a, t_stack **b, t_stack *cheapest);
 void	inverse_move_node(t_stack **b, t_stack **a);
 void	handle_stacks(t_stack **a, t_stack **b);
 void    current_pos(t_stack *stack);
+void	sort_four(t_stack **a, t_stack **b);
+void	sort_five(t_stack **a, t_stack **b);
 
 int		index_nodo(t_stack **stack_a, int ohter_value);
 int		check_duplicate(t_stack **stack, int num);

@@ -112,18 +112,21 @@ t_stack	*find_min(t_stack *stack)
 	return (min_node);
 }
 
-int	is_sorted(t_stack *stack)
+void    current_pos(t_stack *stack)
 {
-	t_stack	*head;
+    int     i;
+    t_stack *tmp;
 
-	if (!stack)
-		return (1);
-	head = stack;
-	while (stack->next != head)
-	{
-		if (stack->value > stack->next->value)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
+    if (!stack)
+        return ;
+    i = 0;
+    tmp = stack;
+    while (1)
+    {
+        stack->pos = i;
+		i++;
+        stack = stack->next;
+        if (stack == tmp)
+            break ;
+    }
 }

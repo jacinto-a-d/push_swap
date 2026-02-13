@@ -12,7 +12,7 @@ SRCS        = parse.c \
               check.c \
               index.c \
               utils.c \
-			  utils_2.c \
+			  sort_small.c \
 			  sa_sb_ss.c \
 			  spa_pb.c \
 			  sra_rb_rr.c \

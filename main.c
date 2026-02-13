@@ -21,7 +21,7 @@ void handle_stacks(t_stack **a, t_stack **b)
 		pb(b, a);
 	if ((list_size_circular(*a)) > 3)
 		pb(b, a);
-	while ((list_size_circular(*a)) > 3 && !is_sorted(*a))
+	while ((list_size_circular(*a)) > 5 && !is_sorted(*a))
     {
         current_pos(*a);
         current_pos(*b);
@@ -34,7 +34,7 @@ void handle_stacks(t_stack **a, t_stack **b)
             break;
         move_node(a, b, node_a);
     }
-    sort_three(a);
+    sort_five(a, b);
     while (list_size_circular(*b) > 0)
     {
         current_pos(*a);
@@ -42,7 +42,10 @@ void handle_stacks(t_stack **a, t_stack **b)
         get_above_median(*a);
         get_above_median(*b);
         set_target_a(*b, *a);
-        push_cost(*a, *b);
+        push_cost(*b, *a);
+		node_a = find_cheapest(*b);
+        if (!node_a)
+            break;
         inverse_move_node(b, a);
     }
     current_pos(*a);
@@ -68,7 +71,11 @@ int	main(int argc, char **argv)
 		}
 		else if (list_size_circular(a) == 3)
 			sort_three(&a);
-		else if (list_size_circular(a) > 3)
+		else if (list_size_circular(a) == 4)
+			sort_four(&a, &b);
+		else if (list_size_circular(a) == 5)
+			sort_five(&a, &b);
+		else if (list_size_circular(a) > 5)
 			handle_stacks(&a, &b);
 		if (b)
 		free_stack(&b);
