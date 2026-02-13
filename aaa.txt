@@ -1,0 +1,45 @@
+void	push_cost(t_stack *a, int size_a, int size_b)
+{
+	t_stack	*head;
+	int		cost_a;
+	int		cost_b;
+
+	if (!a)
+		return ;
+	head = a;
+	while (1)
+	{
+		// CASO 1: Ambos arriba de la mediana (Usamos RR)
+		if (head->above_median && head->target_node->above_median)
+		{
+			if (head->pos > head->target_node->pos)
+				head->push_cost = head->pos;
+			else
+				head->push_cost = head->target_node->pos;
+		}
+		// CASO 2: Ambos abajo de la mediana (Usamos RRR)
+		else if (!(head->above_median) && !(head->target_node->above_median))
+		{
+			if ((size_a - head->pos) > (size_b - head->target_node->pos))
+				head->push_cost = size_a - head->pos;
+			else
+				head->push_cost = size_b - head->target_node->pos;
+		}
+		// CASO 3: Mixto (Uno arriba y otro abajo)
+		else
+		{
+			if (head->above_median)
+				cost_a = head->pos;
+			else
+				cost_a = size_a - head->pos;
+			if (head->target_node->above_median)
+				cost_b = head->target_node->pos;
+			else
+				cost_b = size_b - head->target_node->pos;
+			head->push_cost = cost_a + cost_b;
+		}
+		head = head->next;
+		if (head == a)
+			break ;
+	}
+}
