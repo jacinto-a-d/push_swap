@@ -6,7 +6,7 @@
 /*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 14:53:23 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/14 00:17:50 by dipekko          ###   ########.fr       */
+/*   Updated: 2026/02/15 17:39:40 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,48 +49,22 @@ static void	cost_mix(t_stack *a, int size_a, int size_b)
 	a->push_cost = cost_a + cost_b;
 }
 
-void	push_cost(t_stack *a, t_stack *b)
+void	push_cost(t_stack *a, int size_a, int size_b)
 {
-	t_stack		*tmp;
-	int			size_a;
-	int			size_b;
-	int			dist_a;
-	int			dist_b;
-	int			cost_a;
-	int			cost_b;
+	t_stack	*tmp;
 
-	cost_a = 0;
-	const_b = 0;
-	dist_a = 0;
-	dist_b = 0;
-	size_a = list_size_circular(a);
-	size_b = list_size_circular(b);
 	if (!a)
 		return ;
 	tmp = a;
 	while (1)
 	{
 		if (tmp->above_median && tmp->target_node->above_median)
-		{
-			if (tmp->pos > tmp->target_node->pos)
-				tmp->push_cost = tmp->pos;
-			else
-				tmp->push_cost = tmp->target_node->pos;
-		}
+			cost_rr(tmp);
 		else if (!(tmp->above_median) && !(tmp->target_node->above_median))
-		{
-			dist_a = size_a - tmp->pos;
-			dist_b = size_b - tmp->target_node->pos; 
-			if (dist_a > dist_b)
-				tmp->push_cost = dist_a;
-			else
-				tmp->push_cost = dist_b;
-		}
+			cost_rrr(tmp, size_a, size_b);
 		else
-		{
-			cost_a = tmp->above_median
-		}
-		a = a->next;
+			cost_mix(tmp, size_a, size_b);
+		tmp = tmp->next;
 		if (tmp == a)
 			break ;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   nodos.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 13:29:26 by dipekko           #+#    #+#             */
-/*   Updated: 2026/02/12 19:24:16 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/15 21:28:43 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,89 +68,68 @@ int	list_size_circular(t_stack *stack)
 	return (i);
 }
 
-t_stack	*find_cheapest(t_stack *stack)
-{
-	t_stack		*cheapest_node;
-	t_stack		*tmp;
-	long		best_value;
-
-	if (!stack)
-		return (NULL);
-	tmp = stack;
-	best_value = 2147483648;
-	cheapest_node = NULL;
-	while (1)
-	{
-		if (stack->push_cost < best_value)
-		{
-			best_value = stack->push_cost;
-			cheapest_node = stack;
-		}
-		stack = stack->next;
-		if (tmp == stack)
-			break ;
-	}
-	return (cheapest_node);
-}
-
 void move_node(t_stack **a, t_stack **b, t_stack *cheapest)
 {
-	if (cheapest->above_median && cheapest->target_node->above_median)
-	{
-		while ((*a) != cheapest && (*b) != cheapest->target_node)
-			rr(a, b);
-	}
-	else if (!cheapest->above_median && !cheapest->target_node->above_median)
-	{ 
-		while ((*a) != cheapest && (*b) != cheapest->target_node)
-			rrr(a, b);
-	}
-	while ((*a) != cheapest)
-	{
-		if (cheapest->above_median)
-			ra(a);
-		else
-			rra(a);
-	}
-	while ((*b) != cheapest->target_node)
-	{
-		if (cheapest->target_node->above_median)
-			rb(b);
-		else
-			rrb(b);
-	}
-	pb(b, a);
+    if (!cheapest || !cheapest->target_node)
+        return;
+
+    current_pos(*a);
+    current_pos(*b);
+    get_above_median(*a);
+    get_above_median(*b);
+
+    while ((*a) != cheapest && (*b) != cheapest->target_node)
+    {
+        if (cheapest->above_median && cheapest->target_node->above_median)
+            rr(a, b);
+        else if (!cheapest->above_median && !cheapest->target_node->above_median)
+            rrr(a, b);
+        else
+            break;
+    }
+
+    while ((*a) != cheapest)
+    {
+        if (cheapest->above_median)
+            ra(a);
+        else
+            rra(a);
+    }
+
+    while ((*b) != cheapest->target_node)
+    {
+        if (cheapest->target_node->above_median)
+            rb(b);
+        else
+            rrb(b);
+    }
+
+    pb(b, a);
 }
 
-void inverse_move_node(t_stack **b, t_stack **a)
+void inverse_move_node(t_stack **b, t_stack **a, t_stack *node)
 {
-	t_stack		*cheapest;
-	
-	cheapest = find_cheapest(*b);
-	if (!cheapest->target_node || (*b == cheapest && (*b)->next == *b))
-    {	
-		pa(a, b);
-		return ;
-	}
-	if (cheapest->above_median && cheapest->target_node->above_median)
-		while ((*b) != cheapest && (*a) != cheapest->target_node)
-			rr(a, b);
-	else if (!cheapest->above_median && !cheapest->target_node->above_median)
-		while ((*b) != cheapest && (*a) != cheapest->target_node)
-			rrr(a, b);
-	while ((*b) != cheapest)
-	{
-		if (cheapest->above_median)
-			rb(b);
+    if (!node || !(*b))
+        return;
+
+    current_pos(*a);
+    get_above_median(*a);
+
+    while ((*a) != (*b)->target_node)
+    {
+        if ((*b)->target_node->above_median)
+            ra(a);
+        else
+            rra(a);
+    }
+
+    while ((*b) != node)
+    {
+        if (!node->above_median && (*b)->index != node->index)
+            rrb(b);
 		else
-			rrb(b);
-	}
-	while ((*a) != cheapest->target_node)
-	{
-		if (cheapest->target_node->above_median)
-			ra(a);
-		else
-			rra(a);
-	}
-	pa(a, b);
+			break ;
+    }
+
+    pa(a, b);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 15:25:07 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/12 19:47:12 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/15 20:08:58 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void	sort_three(t_stack **a);
 void	min_on_top(t_stack **a);
 void	set_target_b(t_stack *a, t_stack *b);
 void	set_target_a(t_stack *a, t_stack *b);
-void	push_cost(t_stack *a, t_stack *b);
-void	move_node(t_stack **a, t_stack **b, t_stack *cheapest);
-void	inverse_move_node(t_stack **b, t_stack **a);
+void	push_cost(t_stack *a, int size_a, int size_b);
+void 	move_node(t_stack **a, t_stack **b, t_stack *cheapest);
+void	inverse_move_node(t_stack **b, t_stack **a, t_stack *node);
 void	handle_stacks(t_stack **a, t_stack **b);
 void    current_pos(t_stack *stack);
 void	sort_four(t_stack **a, t_stack **b);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_2.c                                          :+:      :+:    :+:   */
+/*   sort_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 14:54:27 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/12 19:44:48 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/15 21:21:26 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_sorted(t_stack *stack)
 	t_stack	*head;
 
 	if (!stack)
-		return (1);
+		return (0);
 	head = stack;
 	while (stack->next != head)
 	{
@@ -33,6 +33,8 @@ void	min_on_top(t_stack **a)
 	t_stack	*min;
 
 	min = find_max(*a);
+	current_pos(*a);
+	get_above_median(*a);
 	while (*a != min)
 	{
 		if (min->above_median)
@@ -47,7 +49,7 @@ void	sort_three(t_stack **a)
 {
 	t_stack	*max;
 
-	max = find_min(*a);
+	max = find_max(*a);
 	if (*a == max)
 		ra(a);
 	else if ((*a)->next == max)
@@ -73,4 +75,5 @@ void	sort_five(t_stack **a, t_stack **b)
 	sort_three(a);
 	pa(a, b);
 	pa(a, b);
+	min_on_top(a);
 }

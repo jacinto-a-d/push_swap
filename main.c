@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 18:26:48 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/12 19:54:32 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/15 21:24:41 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,30 @@
 
 void handle_stacks(t_stack **a, t_stack **b)
 {
-	t_stack *node_a;
-	
 	if ((list_size_circular(*a)) > 3)
 		pb(b, a);
 	if ((list_size_circular(*a)) > 3)
 		pb(b, a);
-	while ((list_size_circular(*a)) > 5 && !is_sorted(*a))
+	while ((list_size_circular(*a)) > 3)
     {
         current_pos(*a);
         current_pos(*b);
         get_above_median(*a);
         get_above_median(*b);
-        set_target_b(*a, *b);
-        push_cost(*a, *b);
-        node_a = find_cheapest(*a);
-        if (!node_a)
-            break;
-        move_node(a, b, node_a);
+        set_target_a(*a, *b);
+        push_cost(*a, list_size_circular(*a), list_size_circular(*b));
+        move_node(a, b, find_cheapest(*a));
     }
-    sort_five(a, b);
-    while (list_size_circular(*b) > 0)
+    sort_three(a);
+    while (*b)
     {
         current_pos(*a);
         current_pos(*b);
         get_above_median(*a);
         get_above_median(*b);
-        set_target_a(*b, *a);
-        push_cost(*b, *a);
-		node_a = find_cheapest(*b);
-        if (!node_a)
-            break;
-        inverse_move_node(b, a);
+        set_target_b(*b, *a);
+        inverse_move_node(b, a, find_cheapest(*b));
     }
-    current_pos(*a);
-	get_above_median(*a);
 	min_on_top(a);
 }
 
@@ -67,7 +56,10 @@ int	main(int argc, char **argv)
 	{
 		if (list_size_circular(a) == 2)
 		{
-			sa(&a);
+			if (a->value > a->next->value)
+				sa(&a);
+			else
+				return (1);
 		}
 		else if (list_size_circular(a) == 3)
 			sort_three(&a);

@@ -3,41 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   target.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 16:07:14 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/13 14:46:49 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/15 21:16:42 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_stack	*target_b(t_stack *move, t_stack *dest)
-{
-	t_stack		*current;
-	t_stack		*target_node;
-	long		best_index;
-
-	best_index = -2147483649;
-	target_node = NULL;
-	current = dest;
-	if (!dest)
-		return (0);
-	while (1)
-	{
-		if (current->index < move->index && current->index > best_index)
-		{
-			best_index = current->index;
-			target_node = current;
-		}
-		current = current->next;
-		if (current == dest)
-			break ;
-	}
-	return (target_node);
-}
-
-static t_stack	*target_a(t_stack *move, t_stack *dest)
+static t_stack	*target_a(t_stack *move, t_stack *a)
 {
 	t_stack		*current;
 	t_stack		*target_node;
@@ -45,9 +20,36 @@ static t_stack	*target_a(t_stack *move, t_stack *dest)
 
 	best_index = 2147483649;
 	target_node = NULL;
-	current = dest;
-	if (!dest)
-		return (0);
+	current = a;
+	if (!a)
+		return NULL;
+	while (1)
+	{
+		if (current->index > move->index && current->index > best_index)
+		{
+			best_index = current->index;
+			target_node = current;
+		}
+		current = current->next;
+		if (current == a)
+			break ;
+	}
+	if (!target_node)
+		return (find_max(a));
+	return (target_node);
+}
+
+static t_stack	*target_b(t_stack *move, t_stack *b)
+{
+	t_stack		*current;
+	t_stack		*target_node;
+	long		best_index;
+
+	best_index = 2147483649;
+	target_node = NULL;
+	current = b;
+	if (!b)
+		return NULL;
 	while (1)
 	{
 		if (current->index > move->index && current->index < best_index)
@@ -56,51 +58,40 @@ static t_stack	*target_a(t_stack *move, t_stack *dest)
 			target_node = current;
 		}
 		current = current->next;
-		if (current == dest)
+		if (current == b)
 			break ;
 	}
+	if (!target_node)
+		return (find_min(b));
 	return (target_node);
 }
 
 void	set_target_b(t_stack *b, t_stack *a)
 {
-	t_stack		*tmp_b;
-	t_stack		*best;
+	t_stack		*tmp;
 
-	if (!a || !b)
-		return ;
-	tmp_b = b;
+	tmp = b;
 	while (1)
 	{
-
-		best = target_b(b, a);
-		if (!best)
-			b->target_node = find_max(a);
-		else
-			b->target_node = best;
-		b = b->next;
-		if (b == tmp_b)
+		tmp->target_node = target_a(tmp, a);
+		tmp = tmp->next;
+		if (b == tmp)
 			break ;
 	}
 }
 
 void	set_target_a(t_stack *a, t_stack *b)
 {
-	t_stack		*tmp_a;
-	t_stack		*best;
+	t_stack		*tmp;
 
-	if (!a || !b)
+	if (!a)
 		return ;
-	tmp_a = a;
+	tmp = a;
 	while (1)
 	{
-		best = target_a(a, b);
-		if (!best)
-			a->target_node = find_min(b);
-		else
-			a->target_node = best;
-		a = a->next;
-		if (a == tmp_a)
+		tmp->target_node = target_b(tmp, b);
+		tmp = tmp->next;
+		if (a == tmp)
 			break ;
 	}
 }

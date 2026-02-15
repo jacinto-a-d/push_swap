@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 18:56:09 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/12 19:38:15 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/15 18:26:35 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,22 @@ int	atoi_long(const char *str)
 void	get_above_median(t_stack *stack)
 {
 	t_stack		*tmp;
-	int			x;
-	int			size;
+	int			i;
 	int			median;
 
-	x = 0;
-	median = 0;
-	size = 0;
 	if (!stack)
 		return ;
-	size = list_size_circular(stack);
-	median = size / 2;
+	i = 0;
+	median = list_size_circular(stack) / 2;
 	tmp = stack;
 	while (1)
 	{
-		if (x <= median)
+		if (i <= median)
 			stack->above_median = 1;
 		else
 			stack->above_median = 0;
 		stack = stack->next;
+		i++;
 		if (stack == tmp)
 			break ;
 	}
