@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/28 13:23:22 by dipekko           #+#    #+#             */
-/*   Updated: 2026/02/16 11:07:34 by dipekko          ###   ########.fr       */
+/*   Created: 2026/02/16 09:43:47 by dipekko           #+#    #+#             */
+/*   Updated: 2026/02/16 11:40:01 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// HEADEEER
+
 #include "push_swap.h"
 
-void	check_int(long num)
+void	check_int_bonus(long num)
 {
 	if (num < -2147483648 || num > 2147483647)
 	{
@@ -22,7 +24,7 @@ void	check_int(long num)
 	return ;
 }
 
-void	check_num(char *str)
+void	check_num_bonus(char *str)
 {
 	int	i;
 
@@ -33,13 +35,14 @@ void	check_num(char *str)
 			&& str[i] != ' ')
 		{
 			write (2, "Error\n", 6);
+			free(str);
 			exit (1);
 		}
 		i++;
 	}
 }
 
-int	check_duplicate(t_stack **stack_a, int num)
+int	check_duplicate_bonus(t_stack **stack_a, int num)
 {
 	t_stack		*tmp;
 	t_stack		*init;
@@ -59,7 +62,7 @@ int	check_duplicate(t_stack **stack_a, int num)
 	return (0);
 }
 
-void	check_number(char *str)
+void	check_number_bonus(char *str)
 {
 	int		i;
 
@@ -80,4 +83,20 @@ void	check_number(char *str)
 		}
 		i++;
 	}
+}
+
+int	is_sorted_bonus(t_stack *stack)
+{
+	t_stack	*head;
+
+	if (!stack)
+		return (0);
+	head = stack;
+	while (stack->next != head)
+	{
+		if (stack->value > stack->next->value)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
 }

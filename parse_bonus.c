@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   parse_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 18:48:03 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/16 11:06:23 by dipekko          ###   ########.fr       */
+/*   Created: 2026/02/16 09:45:12 by dipekko           #+#    #+#             */
+/*   Updated: 2026/02/16 11:43:56 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// HEADER
+
 #include "push_swap.h"
 
-t_stack	*push_swap_init(char **argv)
+t_stack	*push_swap_init_bonus(char **argv)
 {
 	char		**tmp;
 	int			i;
@@ -22,19 +24,19 @@ t_stack	*push_swap_init(char **argv)
 	stack = NULL;
 	while (argv[i])
 	{
-		tmp = ft_split(argv[i], ' ');
+		tmp = ft_split_bonus(argv[i], ' ');
 		if (!tmp)
 			return (NULL);
-		process_validation_create(&stack, tmp);
-		error_and_clean(tmp, &stack, 0);
+		process_validation_create_bonus(&stack, tmp);
+		error_and_clean_bonus(tmp, &stack, 0);
 		i++;
 	}
 	if (stack)
-		index_list(&stack);
+		index_list_bonus(&stack);
 	return (stack);
 }
 
-void	process_validation_create(t_stack **stack, char **tmp)
+void	process_validation_create_bonus(t_stack **stack, char **tmp)
 {
 	int		x;
 	long	num;
@@ -49,13 +51,23 @@ void	process_validation_create(t_stack **stack, char **tmp)
 	}
 	while (tmp[x])
 	{
-		check_number(tmp[x]);
-		num = atoi_long(tmp[x]);
-		check_int(num);
-		if (check_duplicate(stack, num))
-			error_and_clean(tmp, stack, 1);
-		new_nodo = create_nodo(num);
-		add_nodo_end(stack, new_nodo);
+		check_number_bonus(tmp[x]);
+		num = atoi_long_bonus(tmp[x]);
+		check_int_bonus(num);
+		if (check_duplicate_bonus(stack, num))
+			error_and_clean_bonus(tmp, stack, 1);
+		new_nodo = create_nodo_bonus(num);
+		add_nodo_end_bonus(stack, new_nodo);
 		x++;
 	}
+}
+
+int	ft_strcmp_bonus(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

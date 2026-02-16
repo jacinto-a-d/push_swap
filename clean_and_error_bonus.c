@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_and_error.c                                  :+:      :+:    :+:   */
+/*   clean_and_error_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 18:48:18 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/16 11:02:37 by dipekko          ###   ########.fr       */
+/*   Created: 2026/02/16 10:03:43 by dipekko           #+#    #+#             */
+/*   Updated: 2026/02/16 11:47:59 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// HEADEEEERRRR
+
 #include "push_swap.h"
 
-void	error_and_clean(char **tmp, t_stack **stack, int n)
+void	error_and_clean_bonus(char **tmp, t_stack **stack, int n)
 {
 	int		x;
 
@@ -25,13 +27,13 @@ void	error_and_clean(char **tmp, t_stack **stack, int n)
 	free(tmp);
 	if (n == 1)
 	{
-		free_stack (stack);
+		free_stack_bonus(stack);
 		write (2, "Error\n", 6);
 		exit(1);
 	}
 }
 
-void	free_stack(t_stack **stack)
+void	free_stack_bonus(t_stack **stack)
 {
 	t_stack	*tmp;
 	t_stack	*current;
@@ -47,4 +49,27 @@ void	free_stack(t_stack **stack)
 		current = tmp;
 	}
 	*stack = NULL;
+}
+
+int	atoi_long_bonus(const char *str)
+{
+	long	result;
+	long	sign;
+
+	sign = 1;
+	result = 0;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+		result = result * 10 + (*str - '0');
+		str++;
+	}
+	return (result * sign);
 }

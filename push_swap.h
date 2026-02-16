@@ -6,24 +6,28 @@
 /*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 15:25:07 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/16 09:31:00 by dipekko          ###   ########.fr       */
+/*   Updated: 2026/02/16 11:58:49 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
 # include <stdlib.h>
 # include <unistd.h>
 
 typedef struct s_stack
 {
-	int				value;//numero a ordenar
-	int				index;//el numero en la posicion de la lista
-	int				push_cost;//los movimientos que tiene que realizar
-	int				above_median;//buleano si esta 1 mitad arriba 0 mitad abajo
+	int				value;
+	int				index;
+	int				push_cost;
+	int				above_median;
 	int				pos;
-	struct s_stack	*target_node;//puntero al nodo donde debe aterizar 
+	struct s_stack	*target_node;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }					t_stack;
@@ -75,5 +79,51 @@ int		list_size_circular(t_stack *stack);
 int		is_sorted(t_stack *stack);
 
 char	**ft_split(char const *s, char c);
+
+//bonus
+
+t_stack	*push_swap_init_bonus(char **argv);
+t_stack	*create_nodo_bonus(int value);
+
+void	process_validation_create_bonus(t_stack **stack, char **tmp);
+void	free_stack_bonus(t_stack **stack);
+void	check_int_bonus(long num);
+void	check_num_bonus(char *str);
+void	check_number_bonus(char *str);
+void	rra_check(t_stack **a, int print);
+void	rrb_check(t_stack **b, int print);
+void	rrr_check(t_stack **a, t_stack **b, int print);
+void	ra_check(t_stack **a, int print);
+void	rb_check(t_stack **b, int print);
+void	rr_check(t_stack **a, t_stack **b, int print);
+void	pa_check(t_stack **a, t_stack **b, int print);
+void	pb_check(t_stack **b, t_stack **a, int print);
+void	sa_check(t_stack **a, int print);
+void	sb_check(t_stack **b, int print);
+void	ss_check(t_stack **a, t_stack **b, int print);
+void	apply_basic_bonus(t_stack **a, t_stack **b, char *op);
+void	error_and_clean_bonus(char **tmp, t_stack **stack, int n);
+void	add_nodo_end_bonus(t_stack **stack, t_stack *new_nodo);
+void	index_list_bonus(t_stack **a);
+
+char	*get_next_line(int fd);
+char	*ft_extract_line(char *stash);
+char	*ft_stash_clean(char *stash);
+char	*ft_strchr(const char *str, int c);
+char	*ft_strcat(char *dest, const char *src);
+char	*ft_read_and_strchr(int fd, char *stash);
+char	*ft_str_malloc_concat(char *s1, char *s2);
+char	*ft_init_buffer(char *stash);
+char	*ft_clean_exit(char *stash, char *tmp);
+char	**ft_split_bonus(char const *s, char c);
+
+size_t	ft_strlcat(char *dest, const char *src, size_t destsize);
+size_t	ft_strlen(const char *str);
+
+int		ft_strcmp_bonus(char *s1, char *s2);
+int		atoi_long_bonus(const char *str);
+int		is_sorted_bonus(t_stack *stack);
+int		index_nodo_bonus(t_stack *stack_a, int other_value);
+int		check_duplicate_bonus(t_stack **stack_a, int num);
 
 #endif
