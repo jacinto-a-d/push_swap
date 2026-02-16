@@ -6,7 +6,7 @@
 /*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 14:54:27 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/15 21:21:26 by dipekko          ###   ########.fr       */
+/*   Updated: 2026/02/16 09:27:16 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,37 @@ int	is_sorted(t_stack *stack)
 
 void	min_on_top(t_stack **a)
 {
-	t_stack	*min;
+	t_stack	*tmp;
+	int		min_pos;
+	int		size;
 
-	min = find_max(*a);
+	if (!a || !*a)
+		return ;
 	current_pos(*a);
-	get_above_median(*a);
-	while (*a != min)
+	size = list_size_circular(*a);
+	tmp = *a;
+	while (tmp->index != 0)
+		tmp = tmp->next;
+	min_pos = tmp->pos;
+	while ((*a)->index != 0)
 	{
-		if (min->above_median)
+		if (min_pos <= size / 2)
 			ra(a);
 		else
 			rra(a);
 	}
 }
 
-
 void	sort_three(t_stack **a)
 {
-	t_stack	*max;
+	t_stack	*max_node;
 
-	max = find_max(*a);
-	if (*a == max)
+	max_node = find_max(*a);
+	if (*a == max_node)
 		ra(a);
-	else if ((*a)->next == max)
+	else if ((*a)->next == max_node)
 		rra(a);
-	if ((*a)->value > (*a)->next->value)
+	if ((*a)->index > (*a)->next->index)
 		sa(a);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 15:25:07 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/15 20:08:58 by dipekko          ###   ########.fr       */
+/*   Updated: 2026/02/16 09:31:00 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,15 @@ void	min_on_top(t_stack **a);
 void	set_target_b(t_stack *a, t_stack *b);
 void	set_target_a(t_stack *a, t_stack *b);
 void	push_cost(t_stack *a, int size_a, int size_b);
-void 	move_node(t_stack **a, t_stack **b, t_stack *cheapest);
+void	move_node(t_stack **a, t_stack **b, t_stack *cheapest);
 void	inverse_move_node(t_stack **b, t_stack **a, t_stack *node);
 void	handle_stacks(t_stack **a, t_stack **b);
-void    current_pos(t_stack *stack);
+void	current_pos(t_stack *stack);
 void	sort_four(t_stack **a, t_stack **b);
 void	sort_five(t_stack **a, t_stack **b);
+void	rotate_both(t_stack **a, t_stack **b, t_stack *cheapest);
 
-int		index_nodo(t_stack **stack_a, int ohter_value);
+int		index_nodo(t_stack *stack_a, int ohter_value);
 int		check_duplicate(t_stack **stack, int num);
 int		atoi_long(const char *str);
 int		list_size_circular(t_stack *stack);

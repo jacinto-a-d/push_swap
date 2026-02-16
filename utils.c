@@ -6,7 +6,7 @@
 /*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 18:56:09 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/15 18:26:35 by dipekko          ###   ########.fr       */
+/*   Updated: 2026/02/16 09:28:30 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	get_above_median(t_stack *stack)
 	while (1)
 	{
 		if (i <= median)
-			stack->above_median = 1;
+			tmp->above_median = 1;
 		else
-			stack->above_median = 0;
-		stack = stack->next;
+			tmp->above_median = 0;
+		tmp = tmp->next;
 		i++;
 		if (stack == tmp)
 			break ;
@@ -63,23 +63,16 @@ t_stack	*find_max(t_stack *stack)
 {
 	t_stack		*max_node;
 	t_stack		*tmp;
-	long		max_index;
 
 	if (!stack)
 		return (NULL);
-	tmp = stack;
-	max_index = -2147483649;
-	max_node = NULL;
-	while (1)
+	tmp = stack->next;
+	max_node = stack;
+	while (tmp != stack)
 	{
-		if (stack->index > max_index)
-		{
-			max_index = stack->index;
-			max_node = stack;
-		}
-		stack = stack->next;
-		if (stack == tmp)
-			break ;
+		if (tmp->index > max_node->index)
+			max_node = tmp;
+		tmp = tmp->next;
 	}
 	return (max_node);
 }
@@ -88,42 +81,35 @@ t_stack	*find_min(t_stack *stack)
 {
 	t_stack			*tmp;
 	t_stack			*min_node;
-	long			min_index;
 
-	min_index = 2147483649;
 	if (!stack)
 		return (NULL);
-	tmp = stack;
-	min_node = NULL;
-	while (1)
+	tmp = stack->next;
+	min_node = stack;
+	while (tmp != stack)
 	{
-		if (stack->index < min_index)
-		{
-			min_index = stack->index;
-			min_node = stack;
-		}
-		stack = stack->next;
-		if (stack == tmp)
-			break ;
+		if (tmp->index < min_node->index)
+			min_node = tmp;
+		tmp = tmp->next;
 	}
 	return (min_node);
 }
 
-void    current_pos(t_stack *stack)
+void	current_pos(t_stack *stack)
 {
-    int     i;
-    t_stack *tmp;
+	int		i;
+	t_stack	*tmp;
 
-    if (!stack)
-        return ;
-    i = 0;
-    tmp = stack;
-    while (1)
-    {
-        stack->pos = i;
+	if (!stack)
+		return ;
+	i = 0;
+	tmp = stack;
+	while (1)
+	{
+		stack->pos = i;
 		i++;
-        stack = stack->next;
-        if (stack == tmp)
-            break ;
-    }
+		stack = stack->next;
+		if (stack == tmp)
+			break ;
+	}
 }

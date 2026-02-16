@@ -6,7 +6,7 @@
 /*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 13:29:26 by dipekko           #+#    #+#             */
-/*   Updated: 2026/02/15 21:28:43 by dipekko          ###   ########.fr       */
+/*   Updated: 2026/02/16 09:30:32 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,68 +68,42 @@ int	list_size_circular(t_stack *stack)
 	return (i);
 }
 
-void move_node(t_stack **a, t_stack **b, t_stack *cheapest)
+void	move_node(t_stack **a, t_stack **b, t_stack *cheapest)
 {
-    if (!cheapest || !cheapest->target_node)
-        return;
-
-    current_pos(*a);
-    current_pos(*b);
-    get_above_median(*a);
-    get_above_median(*b);
-
-    while ((*a) != cheapest && (*b) != cheapest->target_node)
-    {
-        if (cheapest->above_median && cheapest->target_node->above_median)
-            rr(a, b);
-        else if (!cheapest->above_median && !cheapest->target_node->above_median)
-            rrr(a, b);
-        else
-            break;
-    }
-
-    while ((*a) != cheapest)
-    {
-        if (cheapest->above_median)
-            ra(a);
-        else
-            rra(a);
-    }
-
-    while ((*b) != cheapest->target_node)
-    {
-        if (cheapest->target_node->above_median)
-            rb(b);
-        else
-            rrb(b);
-    }
-
-    pb(b, a);
+	if (!cheapest || !cheapest->target_node)
+		return ;
+	current_pos(*a);
+	current_pos(*b);
+	get_above_median(*a);
+	get_above_median(*b);
+	rotate_both(a, b, cheapest);
+	while ((*a) != cheapest)
+	{
+		if (cheapest->above_median)
+			ra(a);
+		else
+			rra(a);
+	}
+	while ((*b) != cheapest->target_node)
+	{
+		if (cheapest->target_node->above_median)
+			rb(b);
+		else
+			rrb(b);
+	}
+	pb(b, a);
 }
 
-void inverse_move_node(t_stack **b, t_stack **a, t_stack *node)
+void	inverse_move_node(t_stack **b, t_stack **a, t_stack *node_b)
 {
-    if (!node || !(*b))
-        return;
-
-    current_pos(*a);
-    get_above_median(*a);
-
-    while ((*a) != (*b)->target_node)
-    {
-        if ((*b)->target_node->above_median)
-            ra(a);
-        else
-            rra(a);
-    }
-
-    while ((*b) != node)
-    {
-        if (!node->above_median && (*b)->index != node->index)
-            rrb(b);
+	current_pos(*a);
+	get_above_median(*a);
+	while ((*a)->index != node_b->target_node->index)
+	{
+		if (node_b->target_node->above_median)
+			ra(a);
 		else
-			break ;
-    }
-
-    pa(a, b);
+			rra(a);
+	}
+	pa(a, b);
 }

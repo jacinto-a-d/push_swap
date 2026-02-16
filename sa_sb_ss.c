@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sa_sb_ss.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 14:53:58 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/11 15:15:20 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/16 09:25:34 by dipekko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 static int	swap(t_stack **stack)
 {
-	int		tmp;
+	int		tmp_val;
+	int		tmp_idx;
 
-	tmp = 0;
 	if (!stack || !*stack || (*stack)->next == *stack)
 		return (0);
-	else
-	{
-		tmp = (*stack)->value;
-		(*stack)->value = (*stack)->next->value;
-		(*stack)->next->value = tmp;
-	}
+	tmp_val = (*stack)->value;
+	(*stack)->value = (*stack)->next->value;
+	(*stack)->next->value = tmp_val;
+	tmp_idx = (*stack)->index;
+	(*stack)->index = (*stack)->next->index;
+	(*stack)->next->index = tmp_idx;
 	return (1);
 }
 
