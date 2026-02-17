@@ -3,31 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   clean_and_error_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/16 10:03:43 by dipekko           #+#    #+#             */
-/*   Updated: 2026/02/16 11:47:59 by dipekko          ###   ########.fr       */
+/*   Created: 2026/02/17 13:38:59 by jabad-di          #+#    #+#             */
+/*   Updated: 2026/02/17 20:22:45 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// HEADEEEERRRR
-
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 void	error_and_clean_bonus(char **tmp, t_stack **stack, int n)
 {
 	int		x;
 
 	x = 0;
-	while (tmp[x])
+	if (tmp)
 	{
-		free(tmp[x]);
-		x++;
+		while (tmp[x])
+		{
+			free(tmp[x]);
+			x++;
+		}
+		free(tmp);
 	}
-	free(tmp);
 	if (n == 1)
 	{
-		free_stack_bonus(stack);
+		if (stack && *stack)
+			free_stack_bonus(stack);
 		write (2, "Error\n", 6);
 		exit(1);
 	}
@@ -36,17 +38,19 @@ void	error_and_clean_bonus(char **tmp, t_stack **stack, int n)
 void	free_stack_bonus(t_stack **stack)
 {
 	t_stack	*tmp;
-	t_stack	*current;
+	t_stack	*next_node;
+	int		size;
 
 	if (!stack || !*stack)
 		return ;
-	current = *stack;
-	current->prev->next = NULL;
-	while (current)
+	size = list_size_circular_bonus(*stack);
+	tmp = *stack;
+	while (size > 0)
 	{
-		tmp = current->next;
-		free(current);
-		current = tmp;
+		next_node = tmp->next;
+		free(tmp);
+		tmp = next_node;
+		size--;
 	}
 	*stack = NULL;
 }

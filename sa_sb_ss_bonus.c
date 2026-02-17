@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sa_sb_ss_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/11 14:53:58 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/16 10:57:39 by dipekko          ###   ########.fr       */
+/*   Created: 2026/02/17 13:41:12 by jabad-di          #+#    #+#             */
+/*   Updated: 2026/02/17 13:51:32 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//HEADERRRRRR
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 static int	swap_check(t_stack **stack)
 {

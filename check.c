@@ -3,40 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/28 13:23:22 by dipekko           #+#    #+#             */
-/*   Updated: 2026/02/16 11:07:34 by dipekko          ###   ########.fr       */
+/*   Created: 2026/02/17 13:38:40 by jabad-di          #+#    #+#             */
+/*   Updated: 2026/02/17 17:38:34 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check_int(long num)
+int	check_int(long num)
 {
 	if (num < -2147483648 || num > 2147483647)
-	{
-		write (2, "Error\n", 6);
-		exit(1);
-	}
-	return ;
-}
-
-void	check_num(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if ((str[i] < '0' || str[i] > '9') && str[i] != '-' && str[i] != '+'
-			&& str[i] != ' ')
-		{
-			write (2, "Error\n", 6);
-			exit (1);
-		}
-		i++;
-	}
+		return (0);
+	return (1);
 }
 
 int	check_duplicate(t_stack **stack_a, int num)
@@ -59,7 +39,7 @@ int	check_duplicate(t_stack **stack_a, int num)
 	return (0);
 }
 
-void	check_number(char *str)
+int	check_number(char *str)
 {
 	int		i;
 
@@ -67,17 +47,12 @@ void	check_number(char *str)
 	if (str[i] == '+' || str[i] == '-')
 		i++;
 	if (str[i] == '\0')
-	{
-		write (2, "Error\n", 6);
-		exit (1);
-	}
+		return (0);
 	while (str[i])
 	{
 		if (str[i] > '9' || str[i] < '0')
-		{
-			write (2, "Error\n", 6);
-			exit (1);
-		}
+			return (0);
 		i++;
 	}
+	return (1);
 }

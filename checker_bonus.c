@@ -3,43 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/16 09:43:47 by dipekko           #+#    #+#             */
-/*   Updated: 2026/02/16 11:40:01 by dipekko          ###   ########.fr       */
+/*   Created: 2026/02/17 13:38:51 by jabad-di          #+#    #+#             */
+/*   Updated: 2026/02/17 17:38:40 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// HEADEEER
+#include "push_swap_bonus.h"
 
-#include "push_swap.h"
-
-void	check_int_bonus(long num)
+int	check_int_bonus(long num)
 {
 	if (num < -2147483648 || num > 2147483647)
-	{
-		write (2, "Error\n", 6);
-		exit(1);
-	}
-	return ;
-}
-
-void	check_num_bonus(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if ((str[i] < '0' || str[i] > '9') && str[i] != '-' && str[i] != '+'
-			&& str[i] != ' ')
-		{
-			write (2, "Error\n", 6);
-			free(str);
-			exit (1);
-		}
-		i++;
-	}
+		return (0);
+	return (1);
 }
 
 int	check_duplicate_bonus(t_stack **stack_a, int num)
@@ -62,7 +39,7 @@ int	check_duplicate_bonus(t_stack **stack_a, int num)
 	return (0);
 }
 
-void	check_number_bonus(char *str)
+int	check_number_bonus(char *str)
 {
 	int		i;
 
@@ -70,19 +47,14 @@ void	check_number_bonus(char *str)
 	if (str[i] == '+' || str[i] == '-')
 		i++;
 	if (str[i] == '\0')
-	{
-		write (2, "Error\n", 6);
-		exit (1);
-	}
+		return (0);
 	while (str[i])
 	{
 		if (str[i] > '9' || str[i] < '0')
-		{
-			write (2, "Error\n", 6);
-			exit (1);
-		}
+			return (0);
 		i++;
 	}
+	return (1);
 }
 
 int	is_sorted_bonus(t_stack *stack)

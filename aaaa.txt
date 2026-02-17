@@ -1,0 +1,19 @@
+int	index_nodo(t_stack *stack_a, int other_value)
+{
+	t_stack		*tmp;
+	int			count;
+
+	if (!stack_a)
+		return (0);
+	count = 0;
+	tmp = stack_a;
+	while (1)
+	{
+		if (tmp->value < other_value)
+			count++;
+		tmp = tmp->next;
+		if (tmp == stack_a)
+			break ;
+	}
+	return (count);
+}

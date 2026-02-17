@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/16 09:59:05 by dipekko           #+#    #+#             */
-/*   Updated: 2026/02/16 12:00:27 by dipekko          ###   ########.fr       */
+/*   Created: 2026/02/17 13:40:08 by jabad-di          #+#    #+#             */
+/*   Updated: 2026/02/17 19:59:24 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// HEADER
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 static void	apply_rotations_bonus(t_stack **a, t_stack **b, char *op)
 {
@@ -64,7 +63,7 @@ int	main(int argc, char **argv)
 	b = NULL;
 	a = push_swap_init_bonus(argv);
 	if (!a)
-		return (0);
+		return (1);
 	line = get_next_line(0);
 	while (line)
 	{
@@ -77,6 +76,7 @@ int	main(int argc, char **argv)
 	else
 		write(1, "KO\n", 3);
 	free_stack_bonus(&a);
-	free_stack_bonus(&b);
+	if (b)
+		free_stack_bonus(&b);
 	return (0);
 }

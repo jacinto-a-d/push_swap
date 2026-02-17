@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/09 16:21:51 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/16 11:02:24 by dipekko          ###   ########.fr       */
+/*   Created: 2026/02/17 13:39:45 by jabad-di          #+#    #+#             */
+/*   Updated: 2026/02/17 13:50:56 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 char	*ft_strcat(char *dest, const char *src)
 {

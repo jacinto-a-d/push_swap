@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   spa_pb_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/11 14:54:04 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/16 11:04:49 by dipekko          ###   ########.fr       */
+/*   Created: 2026/02/17 13:41:30 by jabad-di          #+#    #+#             */
+/*   Updated: 2026/02/17 13:51:37 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 static void	add_to_dest_bonus(t_stack **dest, t_stack *node)
 {

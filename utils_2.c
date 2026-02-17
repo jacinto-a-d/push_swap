@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/16 09:20:51 by dipekko           #+#    #+#             */
-/*   Updated: 2026/02/16 09:34:27 by dipekko          ###   ########.fr       */
+/*   Created: 2026/02/17 13:42:06 by jabad-di          #+#    #+#             */
+/*   Updated: 2026/02/17 19:29:05 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//FALTRA HEAAAADEEEER
 #include "push_swap.h"
 
 t_stack	*find_cheapest(t_stack *stack)
@@ -50,4 +49,50 @@ void	rotate_both(t_stack **a, t_stack **b, t_stack *cheapest)
 		else
 			break ;
 	}
+}
+
+void	index_list(t_stack **a)
+{
+	t_stack	*current;
+	t_stack	*tmp;
+	int		x;
+
+	current = *a;
+	while (1)
+	{
+		x = 0;
+		tmp = *a;
+		while (1)
+		{
+			if (tmp->value < current->value)
+				x++;
+			tmp = tmp->next;
+			if (tmp == *a)
+				break ;
+		}
+		current->index = x;
+		current = current->next;
+		if (current == *a)
+			break ;
+	}
+}
+
+int	find_min_index(t_stack *a)
+{
+	t_stack	*tmp;
+	int		min;
+
+	if (!a)
+		return (0);
+	tmp = a;
+	min = tmp->index;
+	while (1)
+	{
+		if (tmp->index < min)
+			min = tmp->index;
+		tmp = tmp->next;
+		if (tmp == a)
+			break ;
+	}
+	return (min);
 }

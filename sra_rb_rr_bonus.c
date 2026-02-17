@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sra_rb_rr_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/11 14:54:13 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/16 11:04:36 by dipekko          ###   ########.fr       */
+/*   Created: 2026/02/17 13:41:39 by jabad-di          #+#    #+#             */
+/*   Updated: 2026/02/17 13:51:40 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 static int	rotate_check(t_stack **stack)
 {

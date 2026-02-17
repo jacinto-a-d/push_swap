@@ -2,7 +2,7 @@ NAME        = push_swap
 BONUS_NAME = checker
 
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror
+CFLAGS      = -Wall -Wextra -Werror -g
 
 MANDATORY_SRCS = parse.c \
               clean_and_error.c \
@@ -11,7 +11,6 @@ MANDATORY_SRCS = parse.c \
               nodos.c \
 			  target.c \
               check.c \
-              index.c \
               utils.c \
 			  utils_2.c \
 			  sort_small.c \
@@ -47,7 +46,7 @@ bonus: $(BONUS_NAME)
 $(BONUS_NAME): $(BONUS_OBJS)
 	$(CC) $(CFLAGS) $(BONUS_OBJS) -o $(BONUS_NAME)
 
-%.o: %.c push_swap.h
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

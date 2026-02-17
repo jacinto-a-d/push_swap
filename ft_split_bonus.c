@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_bonus.c                                      :+:      :+:    :+:   */
+/*   ft_split_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/16 10:52:56 by dipekko           #+#    #+#             */
-/*   Updated: 2026/02/16 10:54:19 by dipekko          ###   ########.fr       */
+/*   Created: 2026/02/17 13:39:34 by jabad-di          #+#    #+#             */
+/*   Updated: 2026/02/17 13:50:49 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// HEAAAADADEEERRRR
-
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 static	char	*copy_substr(const char *s, char c, size_t j, char *second)
 {

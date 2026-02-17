@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/11 14:54:27 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/16 09:27:16 by dipekko          ###   ########.fr       */
+/*   Created: 2026/02/17 13:41:24 by jabad-di          #+#    #+#             */
+/*   Updated: 2026/02/17 19:25:51 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,20 @@ int	is_sorted(t_stack *stack)
 void	min_on_top(t_stack **a)
 {
 	t_stack	*tmp;
-	int		min_pos;
+	int		min_val;
 	int		size;
 
 	if (!a || !*a)
 		return ;
+	min_val = find_min_index(*a);
 	current_pos(*a);
 	size = list_size_circular(*a);
 	tmp = *a;
-	while (tmp->index != 0)
+	while (tmp->index != min_val)
 		tmp = tmp->next;
-	min_pos = tmp->pos;
-	while ((*a)->index != 0)
+	while ((*a)->index != min_val)
 	{
-		if (min_pos <= size / 2)
+		if (tmp->pos <= size / 2)
 			ra(a);
 		else
 			rra(a);

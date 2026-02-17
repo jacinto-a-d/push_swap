@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/03 18:26:48 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/16 09:29:22 by dipekko          ###   ########.fr       */
+/*   Created: 2026/02/17 13:40:14 by jabad-di          #+#    #+#             */
+/*   Updated: 2026/02/17 19:09:20 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int	main(int argc, char **argv)
 	a = push_swap_init(argv);
 	if (!a)
 		return (0);
-	index_list(&a);
 	if (is_sorted(a) == 0)
 		sorted_small(&a, &b);
 	free_stack(&a);

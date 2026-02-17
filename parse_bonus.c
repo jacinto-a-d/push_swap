@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/16 09:45:12 by dipekko           #+#    #+#             */
-/*   Updated: 2026/02/16 11:43:56 by dipekko          ###   ########.fr       */
+/*   Created: 2026/02/17 13:40:28 by jabad-di          #+#    #+#             */
+/*   Updated: 2026/02/17 20:02:09 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// HEADER
-
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 t_stack	*push_swap_init_bonus(char **argv)
 {
@@ -45,15 +43,14 @@ void	process_validation_create_bonus(t_stack **stack, char **tmp)
 	x = 0;
 	num = 0;
 	if (!tmp || !tmp[0])
-	{
-		write (2, "Error\n", 6);
-		exit (1);
-	}
+		error_and_clean_bonus(tmp, stack, 1);
 	while (tmp[x])
 	{
-		check_number_bonus(tmp[x]);
+		if (!check_number_bonus(tmp[x]))
+			error_and_clean_bonus(tmp, stack, 1);
 		num = atoi_long_bonus(tmp[x]);
-		check_int_bonus(num);
+		if (!check_int_bonus(num))
+			error_and_clean_bonus(tmp, stack, 1);
 		if (check_duplicate_bonus(stack, num))
 			error_and_clean_bonus(tmp, stack, 1);
 		new_nodo = create_nodo_bonus(num);

@@ -3,35 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/16 10:56:45 by dipekko           #+#    #+#             */
-/*   Updated: 2026/02/16 11:50:02 by dipekko          ###   ########.fr       */
+/*   Created: 2026/02/17 13:42:11 by jabad-di          #+#    #+#             */
+/*   Updated: 2026/02/17 19:28:38 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// HEAAADER
-#include "push_swap.h"
-
-int	index_nodo_bonus(t_stack *stack_a, int other_value)
-{
-	t_stack		*tmp;
-	int			count;
-
-	if (!stack_a)
-		return (0);
-	count = 0;
-	tmp = stack_a;
-	while (1)
-	{
-		if (tmp->value < other_value)
-			count++;
-		tmp = tmp->next;
-		if (tmp == stack_a)
-			break ;
-	}
-	return (count);
-}
+#include "push_swap_bonus.h"
 
 void	index_list_bonus(t_stack **a)
 {
@@ -96,4 +75,21 @@ void	add_nodo_end_bonus(t_stack **stack, t_stack *new_nodo)
 		new_nodo->next = first;
 		first->prev = new_nodo;
 	}
+}
+
+int	list_size_circular_bonus(t_stack *stack)
+{
+	t_stack		*ptr;
+	int			i;
+
+	if (!stack)
+		return (0);
+	i = 1;
+	ptr = stack->next;
+	while (ptr != stack)
+	{
+		i++;
+		ptr = ptr->next;
+	}
+	return (i);
 }

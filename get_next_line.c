@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dipekko <dipekko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/09 15:43:26 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/16 10:57:29 by dipekko          ###   ########.fr       */
+/*   Created: 2026/02/17 13:39:57 by jabad-di          #+#    #+#             */
+/*   Updated: 2026/02/17 20:17:13 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 size_t	ft_strlen(const char *str)
 {
@@ -78,12 +78,12 @@ char	*ft_stash_clean(char *stash)
 	i = 0;
 	while (stash && stash[x] && stash[x] != '\n')
 		x++;
-	if (!stash || !stash[x])
+	if (!stash || !stash[x] || !stash[x + 1])
 	{
 		free (stash);
 		return (NULL);
 	}
-	rest = malloc(sizeof(char) * (ft_strlen(stash) - x + 1));
+	rest = malloc(sizeof(char) * (ft_strlen(stash) - x));
 	if (!rest)
 	{
 		free (stash);
