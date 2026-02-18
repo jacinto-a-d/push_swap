@@ -6,12 +6,11 @@
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 13:40:33 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/17 18:58:21 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/18 20:20:08 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 t_stack	*push_swap_init(char **argv)
 {
@@ -26,6 +25,8 @@ t_stack	*push_swap_init(char **argv)
 		tmp = ft_split(argv[i], ' ');
 		if (!tmp)
 			return (NULL);
+		if (!tmp[0])
+			error_and_clean(tmp, &stack, 1);
 		process_validation_create(&stack, tmp);
 		error_and_clean(tmp, &stack, 0);
 		i++;

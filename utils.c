@@ -6,13 +6,13 @@
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 13:42:16 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/17 13:42:18 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/18 16:20:49 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	atoi_long(const char *str)
+long	atoi_long(const char *str)
 {
 	long	result;
 	long	sign;

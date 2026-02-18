@@ -6,7 +6,7 @@
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 13:41:05 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/17 18:53:44 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/18 17:04:30 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,13 @@ void	sort_five(t_stack **a, t_stack **b);
 void	rotate_both(t_stack **a, t_stack **b, t_stack *cheapest);
 
 int		check_duplicate(t_stack **stack, int num);
-int		atoi_long(const char *str);
 int		list_size_circular(t_stack *stack);
 int		is_sorted(t_stack *stack);
 int		check_number(char *str);
 int		check_int(long num);
 int		find_min_index(t_stack *a);
+
+long	atoi_long(const char *str);
 
 char	**ft_split(char const *s, char c);
 

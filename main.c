@@ -6,12 +6,11 @@
 /*   By: jabad-di <jabad-di@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 13:40:14 by jabad-di          #+#    #+#             */
-/*   Updated: 2026/02/17 19:09:20 by jabad-di         ###   ########.fr       */
+/*   Updated: 2026/02/18 20:19:54 by jabad-di         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 static void	sorted_small(t_stack **a, t_stack **b)
 {
@@ -64,7 +63,7 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
-	if (argc < 2 || (argc == 2 && !argv[1][0]))
+	if (argc < 2)
 		return (0);
 	a = push_swap_init(argv);
 	if (!a)
