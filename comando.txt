@@ -1,9 +1,0 @@
-ARG=$(seq -100000 100000 | shuf -n 500 | tr '\n' '
- '); ./push_swap $ARG | ./checker_linux $ARG
-
- ARG=$(seq -100000 100000 | shuf -n 500 | tr '\n' '
- '); ./push_swap $ARG | wc -l
-
-
-
-  ARG=$(seq -1000000 1000000 | shuf -n 500 | tr '\n' ' '); MOVIMIENTOS=$(./push_swap $ARG); echo "$MOVIMIENTOS" | ./checker_linux $ARG; echo "$MOVIMIENTOS" | wc -l

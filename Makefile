@@ -1,8 +1,12 @@
 NAME        = push_swap
-BONUS_NAME = checker
+BONUS_NAME	= checker
 
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -g
+CFLAGS      = -Wall -Wextra -Werror -I.
+
+OBJ_DIR			= obj
+MANDATORY_DIR	= $(OBJ_DIR)/mandatory
+BONUS_DIR		= $(OBJ_DIR)/bonus
 
 MANDATORY_SRCS = parse.c \
               clean_and_error.c \
@@ -33,28 +37,46 @@ BONUS_SRCS = utils_bonus.c \
 			clean_and_error_bonus.c \
 			checker_bonus.c \
 
-OBJS        = $(MANDATORY_SRCS:.c=.o)
-BONUS_OBJS	= $(BONUS_SRCS:.c=.o)
+OBJS		= $(addprefix $(MANDATORY_DIR)/, $(MANDATORY_SRCS:.c=.o))
+BONUS_OBJS	= $(addprefix $(BONUS_DIR)/, $(BONUS_SRCS:.c=.o))
 
-all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-bonus: $(BONUS_NAME)
-
 $(BONUS_NAME): $(BONUS_OBJS)
 	$(CC) $(CFLAGS) $(BONUS_OBJS) -o $(BONUS_NAME)
 
-%.o: %.c
+
+all: $(NAME) $(BONUS_NAME)
+
+
+bonus: $(BONUS_NAME)
+
+
+$(MANDATORY_DIR)/%.o: %.c | $(MANDATORY_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(BONUS_DIR)/%.o: %.c | $(BONUS_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+
+$(MANDATORY_DIR):
+	mkdir -p $(MANDATORY_DIR)
+
+$(BONUS_DIR):
+	mkdir -p $(BONUS_DIR)
+
+
 clean:
-	rm -f $(OBJS) $(BONUS_OBJS)
+	rm -rf $(OBJ_DIR)
+
 
 fclean: clean
 	rm -f $(NAME) $(BONUS_NAME)
 
+
 re: fclean all
+
 
 .PHONY: all clean fclean re bonus
